@@ -1,0 +1,452 @@
+/* 字体导入 - 替换为可用的类似字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+/* CSS变量定义 - DaisyUI主题系统 */
+:root {
+    /* 明亮主题色彩变量 */
+    --p: 0 0% 100%;
+    --sf: 0 0% 74.353%;
+    --af: 0 0% 57.725%;
+    --nf: 0 0% 73.725%;
+    --in: 198 93% 60%;
+    --su: 158 64% 52%;
+    --wa: 43 96% 56%;
+    --er: 0 91% 71%;
+    --bc: 0 0% 20%;
+    --sc: 0 0% 18.588%;
+    --ac: 0 0% 14.431%;
+    --nc: 0 0% 18.431%;
+    --inc: 198 100% 12%;
+    --suc: 158 100% 10%;
+    --wac: 43 100% 11%;
+    --erc: 0 100% 14%;
+    
+    /* DaisyUI组件样式变量 */
+    --rounded-box: 1rem;
+    --rounded-btn: .5rem;
+    --rounded-badge: 1.9rem;
+    --animation-btn: .25s;
+    --animation-input: .2s;
+    --btn-text-case: uppercase;
+    --btn-focus-scale: .95;
+    --border-btn: 1px;
+    --tab-border: 1px;
+    --tab-radius: .5rem;
+    
+    /* 颜色定义 */
+    --pf: 0 0% 96.078%;
+    --pc: 0 0% 0%;
+    --s: 0 0% 92.941%;
+    --a: 0 0% 72.157%;
+    --n: 0 0% 92.157%;
+    --b1: 0 0% 100%;
+    --b2: 0 0% 90.196%;
+    --b3: 0 0% 85.098%;
+}
+
+/* 暗色主题变量 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --p: 0 0% 14.902%;
+        --sf: 0 1.9608% 16%;
+        --af: 0 0% 14.118%;
+        --nf: 0 0% 17.569%;
+        --in: 198 93% 60%;
+        --su: 158 64% 52%;
+        --wa: 43 96% 56%;
+        --er: 0 91% 71%;
+        --bc: 0 0% 80%;
+        --pc: 0 0% 82.98%;
+        --sc: 0 5.3922% 84%;
+        --ac: 0 0% 83.529%;
+        --nc: 0 0% 84.392%;
+        --inc: 198 100% 12%;
+        --suc: 158 100% 10%;
+        --wac: 43 100% 11%;
+        --erc: 0 100% 14%;
+        --rounded-box: 1rem;
+        --rounded-btn: .5rem;
+        --rounded-badge: 1.9rem;
+        --animation-btn: .25s;
+        --animation-input: .2s;
+        --btn-text-case: uppercase;
+        --btn-focus-scale: .95;
+        --border-btn: 1px;
+        --tab-border: 1px;
+        --tab-radius: .5rem;
+        --pf: 0 3.0303% 12.941%;
+        --s: 0 1.9608% 20%;
+        --a: 0 0% 17.647%;
+        --n: 0 0% 21.961%;
+        --b1: 0 0% 0%;
+        --b2: 0 0% 5.098%;
+        --b3: 0 0% 16.471%;
+    }
+
+    .dark\:bg-neutral-900 {
+        --tw-bg-opacity: 1;
+        background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+    }
+}
+
+/* 主题样式应用 */
+:root, [data-theme] {
+    background-color: hsla(var(--b1) / var(--tw-bg-opacity, 1));
+    color: hsla(var(--bc) / var(--tw-text-opacity, 1));
+}
+
+/* HTML基础样式 */
+html {
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    font-family: 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+}
+
+html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    font-family: 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Body样式 */
+body {
+    cursor: url(https://image.idealclover.cn/projects/Homepage/icons/cursor.ico), auto;
+    font-family: 'Noto Sans SC', MaokenZhuyuanTi, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    line-height: inherit;
+}
+
+/* Tailwind CSS变量 */
+*, :before, :after {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-gradient-from-position: ;
+    --tw-gradient-via-position: ;
+    --tw-gradient-to-position: ;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / .5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+    --tw-contain-size: ;
+    --tw-contain-layout: ;
+    --tw-contain-paint: ;
+}
+
+/* 伪元素样式 */
+:before, :after {
+    --tw-content: "";
+}
+
+/* 盒模型重置 */
+*, :before, :after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+}
+
+/* 背景样式 */
+.bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+/* Backdrop伪元素 */
+::backdrop {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-gradient-from-position: ;
+    --tw-gradient-via-position: ;
+    --tw-gradient-to-position: ;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / .5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+    --tw-contain-size: ;
+    --tw-contain-layout: ;
+    --tw-contain-paint: ;
+}
+
+/* 自定义样式增强 */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* 响应式容器 */
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1536px;
+    }
+}
+
+/* 主题切换动画 */
+.theme-icon {
+    transition: all 0.3s ease;
+}
+
+.theme-icon.hidden {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+/* 平滑过渡效果 */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsla(var(--b2) / 1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsla(var(--bc) / 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsla(var(--bc) / 0.5);
+}
+
+/* 暗色模式特定样式 */
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+}
+
+/* 额外的工具类 */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hover-lift {
+    transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+}
+
+/* 动画关键帧 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* 焦点样式增强 */
+.btn:focus,
+.input:focus,
+.select:focus,
+.textarea:focus {
+    outline: 2px solid hsla(var(--p) / 0.5);
+    outline-offset: 2px;
+}
+
+/* 自定义徽章样式 */
+.badge-custom {
+    background: linear-gradient(45deg, hsla(var(--p) / 1), hsla(var(--s) / 1));
+    color: hsla(var(--pc) / 1);
+    border: none;
+}
+
+/* 卡片悬停效果 */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 响应式字体大小 */
+@media (max-width: 640px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 暗色模式按钮悬停效果增强 */
+[data-theme="dark"] .btn:hover {
+    background-color: hsla(var(--b3) / 1);
+}
+
+/* 自定义进度条样式 */
+.progress::-webkit-progress-bar {
+    background-color: hsla(var(--b3) / 1);
+    border-radius: var(--rounded-btn);
+}
+
+.progress::-webkit-progress-value {
+    border-radius: var(--rounded-btn);
+    transition: width 0.3s ease;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    
+    .hero {
+        min-height: 60vh;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    #theme-toggle {
+        display: none !important;
+    }
+    
+    body {
+        color: black !important;
+        background: white !important;
+    }
+    
+    .card {
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+}

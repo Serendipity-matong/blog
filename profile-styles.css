@@ -1,0 +1,534 @@
+/* 字体导入 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+/* CSS Reset 和基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 容器布局 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    grid-template-rows: auto auto 1fr;
+    gap: 20px;
+    min-height: 100vh;
+    grid-template-areas: 
+        "profile info social"
+        "profile blog social"
+        "articles articles articles";
+}
+
+/* 主要内容区域 */
+.main-content {
+    display: contents;
+}
+
+/* 左侧个人信息区域 */
+.profile-section {
+    grid-area: profile;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+.username {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.motto {
+    font-size: 1.1rem;
+    color: #aaa;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* 信息卡片 */
+.info-card {
+    grid-area: info;
+    background: rgba(45, 45, 45, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: fit-content;
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.display-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.description {
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.education {
+    font-size: 0.95rem;
+    color: #bbb;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.more-link {
+    color: #70a5ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.more-link:hover {
+    color: #5a93ff;
+    text-decoration: underline;
+}
+
+/* 博客卡片 */
+.blog-card {
+    grid-area: blog;
+    background: rgba(60, 90, 120, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: fit-content;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(42, 74, 107, 0.3);
+}
+
+.blog-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.blog-description {
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 12px;
+}
+
+.blog-url {
+    color: #8bb6ff;
+    text-decoration: none;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.blog-url:hover {
+    color: #7aa8ff;
+    text-decoration: underline;
+}
+
+.blog-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+/* 右侧社交平台区域 */
+.social-section {
+    grid-area: social;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-card {
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    pointer-events: none;
+}
+
+.social-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 各平台特定颜色 */
+.social-card.zhihu {
+    background: linear-gradient(135deg, #0066ff, #0052cc);
+}
+
+.social-card.bilibili {
+    background: linear-gradient(135deg, #fb7299, #e85d86);
+}
+
+.social-card.github {
+    background: linear-gradient(135deg, #333, #24292e);
+}
+
+.social-card.jike {
+    background: linear-gradient(135deg, #ffcd00, #e6b800);
+    color: #333;
+}
+
+.social-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.platform-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.followers {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* 博客文章区域 */
+.blog-section {
+    grid-area: articles;
+    margin-top: 20px;
+}
+
+.blog-articles-header {
+    margin-bottom: 24px;
+}
+
+.blog-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.blog-icon i {
+    color: #70a5ff;
+}
+
+/* 分类标签 */
+.categories {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background: #2a2a2a;
+    color: #ccc;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #444;
+}
+
+.category-btn:hover {
+    background: #3a3a3a;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.category-btn.active {
+    background: #70a5ff;
+    color: #fff;
+    border-color: #70a5ff;
+}
+
+/* 文章列表 */
+.articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.article-item {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-item:hover {
+    background: #252525;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.article-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    flex: 1;
+    margin-right: 16px;
+}
+
+.article-date {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* 右上角装饰图标 */
+.top-right-icon {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.top-right-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 1000px) {
+    .container {
+        grid-template-columns: 1fr 280px;
+        grid-template-areas: 
+            "profile social"
+            "info social"
+            "blog social"
+            "articles articles";
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+        gap: 16px;
+    }
+    
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .profile-section {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .username {
+        font-size: 2rem;
+    }
+    
+    .social-section {
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        gap: 12px;
+    }
+    
+    .categories {
+        justify-content: center;
+    }
+    
+    .article-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .article-title {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .username {
+        font-size: 1.8rem;
+    }
+    
+    .social-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-card,
+    .blog-card {
+        padding: 20px;
+    }
+    
+    .top-right-icon {
+        top: 20px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 选中文本样式 */
+::selection {
+    background: rgba(112, 165, 255, 0.3);
+    color: #fff;
+}
+
+/* 加载动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container > * {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.container > *:nth-child(1) { animation-delay: 0.1s; }
+.container > *:nth-child(2) { animation-delay: 0.2s; }
+.container > *:nth-child(3) { animation-delay: 0.3s; }
+
+/* 焦点样式 */
+.social-card:focus,
+.article-item:focus,
+.category-btn:focus {
+    outline: 2px solid #70a5ff;
+    outline-offset: 2px;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .info-card,
+    .blog-card,
+    .social-card,
+    .article-item {
+        border-width: 2px;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
