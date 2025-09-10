@@ -1,7 +1,7 @@
 # Nginx服务器配置示例
 server {
     listen 80;
-    server_name 43.143.124.38 localhost;
+    server_name matong.auberginewly.site 43.143.124.38 localhost;
     
     # 如果有SSL证书，启用HTTPS重定向
     # return 301 https://$server_name$request_uri;
@@ -64,9 +64,39 @@ server {
         try_files $uri $uri/ /home/index.html;
     }
     
-    # 模块化页面路由
-    location ~ ^/(home|blog|project|travel|profile|assets)/ {
+    # 博客页面路由 - 特殊处理
+    location /blog/ {
         try_files $uri $uri/ =404;
+    }
+    
+    # 项目页面路由
+    location /project/ {
+        try_files $uri $uri/ =404;
+    }
+    
+    # 旅游页面路由  
+    location /travel/ {
+        try_files $uri $uri/ =404;
+    }
+    
+    # 其他模块化页面路由
+    location ~ ^/(home|profile|assets)/ {
+        try_files $uri $uri/ =404;
+    }
+    
+    # 处理从博客页面返回主页的情况
+    location = /home {
+        return 301 /;
+    }
+    
+    # 处理子目录中的index.html请求重定向到主页
+    location ~ ^/(blog|project|travel)/index\.html$ {
+        return 301 /;
+    }
+    
+    # 处理根目录的index.html
+    location = /index.html {
+        return 301 /;
     }
     
     # 隐藏Nginx版本号

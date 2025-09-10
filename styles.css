@@ -1,25 +1,6 @@
 /* 字体导入 - 替换为可用的类似字体 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
-/* 社交媒体卡片链接样式重置 */
-.social-card {
-    text-decoration: none !important;
-    color: inherit !important;
-}
-
-.social-card .platform-name {
-    color: white !important;
-    text-decoration: none !important;
-}
-
-.social-card:hover {
-    text-decoration: none !important;
-}
-
-.social-card:visited {
-    color: inherit !important;
-}
-
 /* CSS变量定义 - DaisyUI主题系统 */
 :root {
     /* 明亮主题色彩变量 */

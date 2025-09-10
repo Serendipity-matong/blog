@@ -17,7 +17,7 @@ RUN mkdir -p /var/log/nginx
 # 设置正确的权限
 RUN chmod -R 755 /usr/share/nginx/html
 
-# 添加健康检查
+# 添加健康检查 - 使用wget替代curl（alpine镜像默认包含wget）
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD curl -f http://localhost/home/index.html || exit 1
 

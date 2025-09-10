@@ -1,11 +1,11 @@
 services:
-  blog:
+  html:
     build: .
-    image: personal-blog:latest
-    container_name: personal-blog
+    image: html-blog:latest
+    container_name: html-blog
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8081:80"
       # - "443:443"  # HTTPS端口，需要SSL证书时取消注释
     volumes:
       # 挂载日志目录到宿主机，方便查看访问日志
@@ -14,10 +14,10 @@ services:
       # - ./ssl:/etc/nginx/ssl:ro
     environment:
       - TZ=Asia/Shanghai
-      - NGINX_HOST=43.143.124.38
-      - NGINX_PORT=8080
+      - NGINX_HOST=matong.auberginewly.site
+      - NGINX_PORT=8081
     networks:
-      - blog-network
+      - html-network
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/home/index.html"]
       interval: 30s
@@ -28,12 +28,12 @@ services:
     labels:
       - "traefik.enable=false"
       # 如果有域名，可以启用下面的配置
-      # - "traefik.http.routers.blog.rule=Host(`yourdomain.com`)"
+      # - "traefik.http.routers.blog.rule=Host(`matong.auberginewly.site`)"
       # - "traefik.http.routers.blog.entrypoints=websecure"
       # - "traefik.http.routers.blog.tls.certresolver=letsencrypt"
 
 networks:
-  blog-network:
+  html-network:
     driver: bridge
 
 # 如果需要持久化存储，可以添加volumes配置
