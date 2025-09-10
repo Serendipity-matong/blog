@@ -7,7 +7,7 @@ server {
     # return 301 https://$server_name$request_uri;
 
     root /usr/share/nginx/html;
-    index html/index.html;
+    index home/index.html;
     
     # Gzip压缩
     gzip on;
@@ -61,11 +61,11 @@ server {
     
     # 主页面路由
     location / {
-        try_files $uri $uri/ /html/index.html;
+        try_files $uri $uri/ /home/index.html;
     }
     
-    # 博客页面路由
-    location /html/ {
+    # 模块化页面路由
+    location ~ ^/(home|blog|project|travel|profile|assets)/ {
         try_files $uri $uri/ =404;
     }
     

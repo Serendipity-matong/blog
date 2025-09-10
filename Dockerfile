@@ -19,7 +19,7 @@ RUN chmod -R 755 /usr/share/nginx/html
 
 # 添加健康检查
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost/html/index.html || exit 1
+    CMD curl -f http://localhost/home/index.html || exit 1
 
 # 暴露端口
 EXPOSE 80
