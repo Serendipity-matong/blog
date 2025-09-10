@@ -1,0 +1,1076 @@
+/* 字体导入 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+/* CSS Reset 和基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    background-color: #1b1b1b;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 主题颜色变量 */
+:root {
+    /* 项目主题 - 蓝色系 */
+    --project-primary: #2563eb;
+    --project-secondary: #1d4ed8;
+    --project-accent: #3b82f6;
+    --project-light: #dbeafe;
+    --project-dark: #1e3a8a;
+    
+    /* 博客主题 - 绿色系 */
+    --blog-primary: #059669;
+    --blog-secondary: #047857;
+    --blog-accent: #10b981;
+    --blog-light: #d1fae5;
+    --blog-dark: #064e3b;
+    
+    /* 旅游主题 - 橙色系 */
+    --travel-primary: #ea580c;
+    --travel-secondary: #dc2626;
+    --travel-accent: #f97316;
+    --travel-light: #fed7aa;
+    --travel-dark: #9a3412;
+    
+    /* 通用颜色 */
+    --bg-primary: #1b1b1b;
+    --bg-secondary: #272727;
+    --bg-tertiary: #333333;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --border: #444444;
+}
+
+/* 导航栏 */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: rgba(27, 27, 27, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    padding: 16px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-brand:hover {
+    color: var(--text-secondary);
+}
+
+.nav-brand i {
+    font-size: 1.1rem;
+}
+
+.nav-type {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* 主题特定的导航栏颜色 */
+.project-theme .nav-type i {
+    color: var(--project-primary);
+}
+
+.blog-theme .nav-type i {
+    color: var(--blog-primary);
+}
+
+.travel-theme .nav-type i {
+    color: var(--travel-primary);
+}
+
+/* 详情容器 */
+.detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* 详情头部 */
+.detail-header {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    box-shadow: 
+        8px 16px 24px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: all 0.3s ease;
+}
+
+.detail-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        12px 24px 40px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.header-content {
+    max-width: 800px;
+}
+
+.project-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* 主题特定的徽章颜色 */
+.project-theme .project-badge {
+    background: linear-gradient(135deg, var(--project-primary), var(--project-secondary));
+    color: white;
+}
+
+.blog-theme .project-badge {
+    background: linear-gradient(135deg, var(--blog-primary), var(--blog-secondary));
+    color: white;
+}
+
+.travel-theme .project-badge {
+    background: linear-gradient(135deg, var(--travel-primary), var(--travel-secondary));
+    color: white;
+}
+
+.detail-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.detail-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.detail-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.stat-item i {
+    font-size: 1rem;
+}
+
+/* 主题特定的统计项颜色 */
+.project-theme .stat-item i {
+    color: var(--project-accent);
+}
+
+.blog-theme .stat-item i {
+    color: var(--blog-accent);
+}
+
+.travel-theme .stat-item i {
+    color: var(--travel-accent);
+}
+
+.project-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.project-link.primary {
+    color: white;
+}
+
+.project-link.secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+/* 主题特定的链接颜色 */
+.project-theme .project-link.primary {
+    background: linear-gradient(135deg, var(--project-primary), var(--project-secondary));
+}
+
+.blog-theme .project-link.primary {
+    background: linear-gradient(135deg, var(--blog-primary), var(--blog-secondary));
+}
+
+.travel-theme .project-link.primary {
+    background: linear-gradient(135deg, var(--travel-primary), var(--travel-secondary));
+}
+
+.project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 16px 32px rgba(0, 0, 0, 0.8);
+}
+
+/* 内容区域 */
+.detail-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: start;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* 详情区块 */
+.detail-section {
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    box-shadow: 
+        6px 12px 20px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    transition: all 0.3s ease;
+}
+
+.detail-section:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+        8px 16px 32px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-title i {
+    font-size: 1.2rem;
+}
+
+/* 主题特定的标题颜色 */
+.project-theme .section-title i {
+    color: var(--project-accent);
+}
+
+.blog-theme .section-title i {
+    color: var(--blog-accent);
+}
+
+.travel-theme .section-title i {
+    color: var(--travel-accent);
+}
+
+.section-content {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* 博客内容样式 */
+.blog-content h2 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 32px 0 16px 0;
+    padding-left: 16px;
+    border-left: 4px solid transparent;
+}
+
+.project-theme .blog-content h2 {
+    border-left-color: var(--project-accent);
+}
+
+.blog-theme .blog-content h2 {
+    border-left-color: var(--blog-accent);
+}
+
+.travel-theme .blog-content h2 {
+    border-left-color: var(--travel-accent);
+}
+
+.blog-content h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 24px 0 12px 0;
+}
+
+.blog-content p {
+    margin-bottom: 16px;
+}
+
+.blog-content ul, .blog-content ol {
+    margin: 16px 0;
+    padding-left: 24px;
+}
+
+.blog-content li {
+    margin-bottom: 8px;
+}
+
+.blog-content blockquote {
+    background: var(--bg-tertiary);
+    border-left: 4px solid var(--project-accent);
+    padding: 16px 24px;
+    margin: 24px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+.blog-theme .blog-content blockquote {
+    border-left-color: var(--blog-accent);
+}
+
+.travel-theme .blog-content blockquote {
+    border-left-color: var(--travel-accent);
+}
+
+.intro-text, .outro-text {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 24px !important;
+}
+
+/* 特性列表 */
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.feature-list i {
+    margin-top: 4px;
+    font-size: 0.9rem;
+}
+
+.project-theme .feature-list i {
+    color: var(--project-accent);
+}
+
+.blog-theme .feature-list i {
+    color: var(--blog-accent);
+}
+
+.travel-theme .feature-list i {
+    color: var(--travel-accent);
+}
+
+/* 技术标签 */
+.tech-stack {
+    margin-top: 24px;
+}
+
+.tech-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.tech-tag {
+    background: var(--bg-tertiary);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+/* 性能网格 */
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.performance-card {
+    background: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.perf-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.project-theme .perf-number {
+    color: var(--project-accent);
+}
+
+.blog-theme .perf-number {
+    color: var(--blog-accent);
+}
+
+.travel-theme .perf-number {
+    color: var(--travel-accent);
+}
+
+.perf-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* 标签列表 */
+.tag-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--bg-tertiary);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+/* 行程样式 */
+.itinerary h3 {
+    color: var(--text-primary);
+    margin: 24px 0 12px 0;
+    font-size: 1.1rem;
+}
+
+.itinerary ul {
+    margin-bottom: 20px;
+}
+
+/* 照片画廊 */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.photo-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.photo-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 16px 32px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.photo-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover .photo-img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 20px 16px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.photo-item:hover .photo-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 照片占位符（保留向后兼容） */
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-muted);
+}
+
+.photo-placeholder i {
+    font-size: 2rem;
+}
+
+/* 旅行贴士网格 */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.tip-card {
+    background: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.tip-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.travel-theme .tip-card h4 i {
+    color: var(--travel-accent);
+}
+
+/* 侧边栏 */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: 120px;
+}
+
+.sidebar-section {
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 
+        6px 12px 20px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    transition: all 0.3s ease;
+}
+
+.sidebar-section:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+        8px 16px 32px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.info-label {
+    color: var(--text-muted);
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.info-value.active {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.project-theme .info-value.active {
+    background: var(--project-primary);
+    color: white;
+}
+
+.blog-theme .info-value.active {
+    background: var(--blog-primary);
+    color: white;
+}
+
+.travel-theme .info-value.active {
+    background: var(--travel-primary);
+    color: white;
+}
+
+/* 相关项目 */
+.related-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.related-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.related-item:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+.related-item i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.project-theme .related-item i {
+    color: var(--project-accent);
+}
+
+.blog-theme .related-item i {
+    color: var(--blog-accent);
+}
+
+.travel-theme .related-item i {
+    color: var(--travel-accent);
+}
+
+.related-item span {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* 作者卡片 */
+.author-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.author-bio {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.author-link {
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.project-theme .author-link {
+    color: var(--project-accent);
+}
+
+.blog-theme .author-link {
+    color: var(--blog-accent);
+}
+
+.travel-theme .author-link {
+    color: var(--travel-accent);
+}
+
+.author-link:hover {
+    text-decoration: underline;
+}
+
+/* 天气信息 */
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.weather-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.weather-date {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.weather-desc {
+    color: var(--text-muted);
+}
+
+/* 页脚 */
+.footer {
+    margin-top: 60px;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .detail-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .sidebar {
+        position: static;
+        top: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-container {
+        padding: 20px 15px;
+    }
+    
+    .detail-header {
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .detail-title {
+        font-size: 2rem;
+    }
+    
+    .detail-subtitle {
+        font-size: 1rem;
+    }
+    
+    .detail-stats {
+        gap: 16px;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .project-link {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .detail-section {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .performance-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .sidebar-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-title {
+        font-size: 1.6rem;
+    }
+    
+    .performance-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* 选中文本样式 */
+::selection {
+    background: rgba(59, 130, 246, 0.3);
+    color: white;
+}
+
+.blog-theme ::selection {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+.travel-theme ::selection {
+    background: rgba(249, 115, 22, 0.3);
+}
+
+/* 加载动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-section {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.sidebar-section {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .detail-section,
+    .sidebar-section {
+        border-width: 2px;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 数学公式样式 */
+.math-block {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    border: 1px solid #333;
+    overflow-x: auto;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* MathJax渲染优化 */
+.MathJax {
+    font-size: 1em !important;
+}
+
+.MathJax_Display {
+    margin: 1em 0 !important;
+}
+
+/* 学术页面性能优化 */
+.blog-theme .detail-content {
+    contain: layout style;
+    will-change: scroll-position;
+}
+
+.blog-theme .article-content {
+    transform: translateZ(0);
+}
+
+/* 定理框样式 */
+.theorem-box {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 1px solid #70a5ff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    box-shadow: 
+        4px 8px 16px rgba(112, 165, 255, 0.15),
+        0 0 0 1px rgba(112, 165, 255, 0.1) inset;
+}
+
+.theorem-box h4 {
+    color: #70a5ff;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.theorem-box p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* 算法框样式 */
+.algorithm-box {
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.algorithm-box ol {
+    margin: 0;
+    padding-left: 20px;
+}

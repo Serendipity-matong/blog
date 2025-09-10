@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目详情 - Ascend C 基于Flashattention的算子融合</title>
+    <link rel="stylesheet" href="../assets/detail-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="project-theme">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回主页</span>
+            </a>
+            <div class="nav-type">
+                <i class="fas fa-folder-open"></i>
+                <span>个人项目</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="detail-container">
+        <!-- 项目标题区域 -->
+        <div class="detail-header">
+            <div class="header-content">
+                <div class="project-badge">
+                    <i class="fas fa-code"></i>
+                    <span>算子融合</span>
+                </div>
+                <h1 class="detail-title">Ascend C 基于Flashattention的算子融合</h1>
+                <p class="detail-subtitle">仿照Flashattention的设计思路在升腾上的应用，Qwen2.5效果优化极佳</p>
+                <div class="detail-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>50K+ Users</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>Featured</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>2024.11</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="https://nju.app" class="project-link primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>访问项目</span>
+                    </a>
+                    <a href="#" class="project-link secondary">
+                        <i class="fab fa-github"></i>
+                        <span>查看源码</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目详情内容 -->
+        <div class="detail-content">
+            <div class="content-grid">
+                <!-- 主要内容 -->
+                <div class="main-content">
+                    <!-- 项目概述 -->
+                    <section class="detail-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-info-circle"></i>
+                            项目概述
+                        </h2>
+                        <div class="section-content">
+                            <p>本项目致力于在华为升腾AI处理器上实现基于Flashattention算法的高效算子融合。通过深入研究Flashattention的核心设计理念，我们在升腾平台上重新实现了这一突破性的注意力机制优化技术。</p>
+                            
+                            <p>项目的核心创新在于针对升腾架构的特性，对原始Flashattention算法进行了深度定制化改进，实现了显著的性能提升。在Qwen2.5模型上的测试结果表明，我们的实现相比标准实现获得了极佳的优化效果。</p>
+                            
+                            <h3>主要特点</h3>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> 针对升腾架构优化的Flashattention实现</li>
+                                <li><i class="fas fa-check-circle"></i> 支持多种模型尺寸和序列长度</li>
+                                <li><i class="fas fa-check-circle"></i> 显著降低内存占用和计算延迟</li>
+                                <li><i class="fas fa-check-circle"></i> 完整的性能分析和基准测试</li>
+                                <li><i class="fas fa-check-circle"></i> 详细的部署和使用文档</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 技术细节 -->
+                    <section class="detail-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-cogs"></i>
+                            技术实现
+                        </h2>
+                        <div class="section-content">
+                            <h3>核心算法</h3>
+                            <p>Flashattention通过重新组织attention计算的内存访问模式，避免了传统实现中的大量中间结果存储。我们的实现进一步针对升腾的内存层次结构进行了优化。</p>
+                            
+                            <div class="tech-stack">
+                                <h3>技术栈</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">Ascend C</span>
+                                    <span class="tech-tag">CANN</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">PyTorch</span>
+                                    <span class="tech-tag">CUDA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 性能数据 -->
+                    <section class="detail-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-chart-line"></i>
+                            性能指标
+                        </h2>
+                        <div class="section-content">
+                            <div class="performance-grid">
+                                <div class="performance-card">
+                                    <div class="perf-number">3.2x</div>
+                                    <div class="perf-label">速度提升</div>
+                                </div>
+                                <div class="performance-card">
+                                    <div class="perf-number">60%</div>
+                                    <div class="perf-label">内存节省</div>
+                                </div>
+                                <div class="performance-card">
+                                    <div class="perf-number">50K+</div>
+                                    <div class="perf-label">活跃用户</div>
+                                </div>
+                                <div class="performance-card">
+                                    <div class="perf-number">99.9%</div>
+                                    <div class="perf-label">稳定性</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">项目信息</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">状态</span>
+                                <span class="info-value active">活跃开发</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">语言</span>
+                                <span class="info-value">Ascend C</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">许可证</span>
+                                <span class="info-value">MIT</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">版本</span>
+                                <span class="info-value">v2.1.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">相关项目</h3>
+                        <div class="related-projects">
+                            <a href="javascript:void(0)" class="related-item">
+                                <i class="fas fa-brain"></i>
+                                <span>航空降雨大气预测</span>
+                            </a>
+                            <a href="javascript:void(0)" class="related-item">
+                                <i class="fas fa-robot"></i>
+                                <span>教室白板识别</span>
+                            </a>
+                            <a href="javascript:void(0)" class="related-item">
+                                <i class="fas fa-code"></i>
+                                <span>coding ai纠错平台</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 idealclover. Made with ❤️</p>
+        </div>
+    </footer>
+
+    <script src="../assets/detail-script.js"></script>
+</body>
+</html>

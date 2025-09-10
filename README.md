@@ -1,199 +1,178 @@
-# 样式展示页面
+# Personal Blog & Portfolio Website
 
-这是一个基于用户提供的CSS样式完整重现的HTML、CSS和JavaScript实现项目。
+一个现代化的个人博客和作品集网站，包含技术博客、项目展示、旅行记录等内容。
+
+## 🌟 功能特性
+
+- 📝 **技术博客** - 分布式系统、机器学习、前端开发等技术文章
+- 💼 **项目展示** - 个人项目和作品集展示
+- 🎯 **个人简介** - 详细的个人资料和技能介绍
+- 🌍 **旅行记录** - 各地旅行照片和游记分享
+- 📱 **响应式设计** - 适配手机、平板、桌面等各种设备
+- 🌙 **暗色模式** - 支持明暗主题切换
+- 🚀 **性能优化** - 快速加载和流畅的用户体验
 
 ## 📁 项目结构
 
 ```
-html/
-├── index.html      # 主HTML文件
-├── styles.css      # 样式文件（包含原始CSS样式的完整实现）
-├── script.js       # JavaScript交互功能
-└── README.md       # 项目说明文档
+├── home/                   # 首页模块
+│   ├── index.html         # 主页
+│   ├── styles.css         # 主页样式
+│   └── script.js          # 主页交互逻辑
+├── blog/                   # 博客模块
+│   ├── blog-distributed-sgd.html       # 分布式梯度下降
+│   ├── blog-gradient-coding.html       # 梯度编码技术
+│   ├── blog-sparsification.html        # 稀疏化技术
+│   ├── blog-react.html                 # React开发
+│   ├── blog-astro.html                 # Astro框架
+│   ├── blog-microservices.html         # 微服务架构
+│   ├── blog-tailwind.html              # Tailwind CSS
+│   ├── blog-detail.html                # 博客详情页模板
+│   └── ... (更多技术博客)
+├── project/                # 项目展示模块
+│   ├── project-coding-ai.html          # AI编程助手
+│   ├── project-jiangxi-gaokao.html     # 江西高考分析
+│   ├── project-linkbox.html            # LinkBox工具
+│   ├── project-weather-prediction.html # 天气预测系统
+│   ├── project-whiteboard.html         # 在线白板
+│   ├── project-detail.html             # 项目详情页模板
+│   └── project-*.html                  # 更多项目
+├── travel/                 # 旅行记录模块
+│   ├── travel-fanjingshan.html         # 贵州梵净山
+│   ├── travel-guizhou.html             # 贵州游记
+│   ├── travel-hainan.html              # 海南度假
+│   ├── travel-wuhan.html               # 武汉探索
+│   ├── travel-detail.html              # 旅行详情页模板
+│   └── travel-*.html                   # 更多旅行记录
+├── profile/                # 个人资料模块
+│   ├── profile.html       # 个人简介页
+│   ├── profile-styles.css # 个人资料样式
+│   └── profile-script.js  # 个人资料交互
+├── assets/                 # 静态资源
+│   ├── detail-styles.css  # 详情页通用样式
+│   ├── detail-script.js   # 详情页通用脚本
+│   └── images/            # 图片资源
+│       ├── guilin/        # 桂林旅行照片
+│       ├── guizhou/       # 贵州旅行照片
+│       ├── hainan/        # 海南旅行照片
+│       └── wuhan/         # 武汉旅行照片
+├── Dockerfile             # Docker镜像构建文件
+├── docker-compose.yml     # Docker编排配置
+├── nginx.conf.example     # Nginx配置示例
+└── README.md             # 项目说明文档
 ```
 
-## 🎨 特性
+## 📝 内容展示
 
-### 样式系统
-- **Tailwind CSS** - 现代化的CSS框架
-- **DaisyUI** - 基于Tailwind的组件库
-- **暗黑模式支持** - 自动检测系统主题偏好
-- **响应式设计** - 适配各种屏幕尺寸
-- **自定义字体** - 支持中文字体显示
+### 技术博客
+- 分布式随机梯度下降算法
+- 梯度编码技术详解
+- 稀疏化技术在机器学习中的应用
+- React 开发最佳实践
+- Astro 静态站点生成器介绍
+- 微服务架构设计
+- Tailwind CSS 使用心得
 
-### 交互功能
-- **主题切换** - 明亮/暗色主题一键切换
-- **平滑动画** - 页面加载和滚动动画
-- **波纹效果** - 按钮点击交互反馈
-- **悬停效果** - 卡片和按钮悬停动画
-- **键盘导航** - 完整的无障碍访问支持
+### 项目作品
+- AI编程助手项目
+- 江西高考数据分析
+- LinkBox 链接管理工具
+- 天气预测系统
+- 在线白板应用
 
-### 组件展示
-- 导航栏（响应式）
-- 英雄区域
-- 卡片网格
-- 按钮组合
-- 表单组件
-- 进度条
-- 徽章和状态指示器
-- 模态框
+### 旅行记录
+- 贵州梵净山之旅
+- 桂林山水游记
+- 海南度假记录
+- 武汉城市探索
 
 ## 🚀 快速开始
 
-### 1. 启动本地服务器
+### 本地开发
 
 ```bash
-# 使用Python内置服务器
+# 使用Python启动本地服务器
 python3 -m http.server 8080
 
 # 或使用Node.js
 npx http-server
 
-# 或使用PHP
-php -S localhost:8080
+# 访问网站
+open http://localhost:8080/home/index.html
 ```
 
-### 2. 访问页面
+### Docker部署
 
-在浏览器中打开：`http://localhost:8080`
+```bash
+# 构建镜像
+docker build -t personal-blog .
+
+# 运行容器
+docker-compose up -d
+
+# 访问网站
+open http://localhost:8080
+```
 
 ## 🛠️ 技术栈
 
-- **HTML5** - 语义化标记
-- **CSS3** - 现代CSS特性
-  - CSS变量（自定义属性）
-  - Grid和Flexbox布局
-  - 动画和过渡效果
-  - 媒体查询（响应式）
-- **JavaScript ES6+** - 现代JavaScript特性
-  - DOM操作
-  - 事件处理
-  - 本地存储
-  - 性能监控
+- **前端**: HTML5, CSS3, JavaScript ES6+
+- **样式**: Tailwind CSS, 自定义CSS
+- **部署**: Docker, Nginx
+- **响应式设计**: Mobile-first approach
+- **性能优化**: 图片懒加载, CSS/JS压缩
 
-## 🎯 CSS样式特性
+## 🎨 设计特色
 
-本项目完整实现了原始CSS中的所有特性：
+- **现代化UI**: 简洁优雅的界面设计
+- **响应式布局**: 完美适配各种屏幕尺寸
+- **流畅动画**: 精心设计的过渡动画效果
+- **易用导航**: 清晰的导航结构和面包屑
+- **内容分类**: 按主题组织的内容分类系统
+- **模块化架构**: 按功能模块组织文件，便于维护和扩展
 
-### 1. 颜色系统
-- DaisyUI主题色彩变量
-- 明亮/暗色主题支持
-- HSL颜色空间使用
+## 🏗️ 架构优势
 
-### 2. 布局系统
-- Tailwind CSS的所有工具类变量
-- 响应式网格布局
-- Flexbox容器
+- **功能模块分离**: 每个功能(博客、项目、旅行)都有独立的目录
+- **代码复用**: 共用的样式和脚本放在assets目录
+- **维护便利**: 相关文件集中管理，修改和查找更方便
+- **扩展性强**: 添加新功能模块只需创建新目录
+- **部署灵活**: 可以单独部署某个功能模块
 
-### 3. 交互效果
-- 自定义光标样式
-- 悬停和焦点状态
-- 平滑过渡动画
+## 🌐 部署说明
 
-### 4. 组件样式
-- 按钮样式（多种变体）
-- 表单控件样式
-- 卡片和容器样式
-- 导航组件样式
+### 使用Docker部署
 
-## 📱 响应式设计
+1. 确保服务器安装了Docker和Docker Compose
+2. 将项目文件上传到服务器
+3. 运行部署命令：
 
-- **手机端** (< 768px): 单列布局，紧凑间距
-- **平板端** (768px - 1024px): 双列布局
-- **桌面端** (> 1024px): 三列网格布局
-
-## 🌙 主题系统
-
-### 自动主题检测
-页面会自动检测用户的系统主题偏好，并应用相应的颜色方案。
-
-### 手动切换
-用户可以通过右上角的主题切换按钮手动切换主题，设置会保存在本地存储中。
-
-### 主题变量
-所有颜色都通过CSS变量定义，支持完整的主题定制。
-
-## 🔧 自定义配置
-
-### 修改颜色主题
-在 `styles.css` 文件中修改 `:root` 选择器下的CSS变量：
-
-```css
-:root {
-    --p: 0 0% 100%;        /* 主色调 */
-    --s: 0 0% 92.941%;     /* 次要色调 */
-    --a: 0 0% 72.157%;     /* 强调色调 */
-    /* ... 更多变量 */
-}
+```bash
+docker-compose up -d
 ```
 
-### 添加新组件
-1. 在 `index.html` 中添加HTML结构
-2. 在 `styles.css` 中添加对应样式
-3. 在 `script.js` 中添加交互逻辑
+### 使用传统Web服务器部署
 
-## 🌟 性能优化
+1. 将项目文件上传到Web服务器根目录
+2. 配置Nginx或Apache服务器
+3. 确保服务器支持静态文件服务
 
-- **CSS优化**: 使用CSS变量减少重复代码
-- **JavaScript优化**: 事件委托和防抖/节流
-- **加载优化**: CDN资源和懒加载
-- **动画优化**: GPU加速的CSS动画
+## 📱 浏览器支持
 
-## 🎮 交互功能详解
-
-### 主题切换
-- 点击右上角太阳/月亮图标
-- 支持键盘访问（Tab导航）
-- 设置持久化保存
-
-### 动画系统
-- 页面加载时的渐入动画
-- 滚动时元素的出现动画
-- 按钮点击的波纹效果
-- 卡片悬停的提升效果
-
-### 响应式行为
-- 自动检测屏幕尺寸
-- 移动端优化的导航
-- 触摸友好的交互区域
-
-## 📋 浏览器支持
-
-- ✅ Chrome (最新版本)
-- ✅ Firefox (最新版本)
-- ✅ Safari (最新版本)
-- ✅ Edge (最新版本)
-
-## 🔍 调试和开发
-
-### 控制台输出
-打开浏览器开发者工具查看：
-- 页面加载时间统计
-- 主题切换事件
-- 错误信息（如有）
-
-### 样式调试
-使用浏览器开发者工具的Elements面板查看：
-- CSS变量的实时值
-- 计算后的样式
-- 响应式断点效果
-
-## 📝 注意事项
-
-1. **字体加载**: 使用了Google Fonts作为中文字体的替代方案
-2. **图标资源**: 自定义光标图标可能需要网络连接
-3. **兼容性**: 使用了现代CSS特性，建议在最新浏览器中查看
-4. **性能**: 在低性能设备上可能需要优化动画效果
+- ✅ Chrome (推荐)
+- ✅ Firefox
+- ✅ Safari  
+- ✅ Edge
+- ✅ 移动端浏览器
 
 ## 🤝 贡献
 
-欢迎提交Issue和Pull Request来改进这个项目！
+欢迎提交Issue和Pull Request来改进项目！
 
 ## 📄 许可证
 
-MIT License - 详见LICENSE文件
+MIT License
 
 ---
 
-**享受探索这个样式展示页面！** 🎉
-
+**访问在线演示**: [项目地址待添加]

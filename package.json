@@ -1,0 +1,80 @@
+{
+  "name": "personal-blog-portfolio",
+  "version": "1.0.0",
+  "description": "个人博客和作品集网站，包含项目展示、技术博客和旅游日记",
+  "main": "html/index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8081",
+    "build": "./deploy.sh",
+    "deploy": "./deploy.sh && echo '部署包已准备完成'",
+    "serve": "cd html && python3 -m http.server 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/personal-blog-portfolio.git"
+  },
+  "keywords": [
+    "blog",
+    "portfolio",
+    "personal-website",
+    "static-site",
+    "travel-diary",
+    "academic-papers",
+    "project-showcase"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://yourwebsite.com"
+  },
+  "license": "MIT",
+  "homepage": "https://yourwebsite.com",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "deployment": {
+    "platforms": [
+      "Apache",
+      "Nginx", 
+      "Vercel",
+      "Netlify",
+      "GitHub Pages",
+      "CDN (OSS/COS/S3)"
+    ],
+    "features": [
+      "响应式设计",
+      "数学公式渲染(MathJax)",
+      "重阴影效果UI",
+      "图片画廊",
+      "博客分类切换",
+      "项目展示",
+      "旅游日记"
+    ]
+  },
+  "technical": {
+    "frontend": {
+      "html": "HTML5语义化标签",
+      "css": "现代CSS3特性，响应式设计",
+      "javascript": "ES6+原生JavaScript，无框架依赖"
+    },
+    "libraries": {
+      "mathjax": "3.x - 数学公式渲染",
+      "fontawesome": "6.4.0 - 图标库"
+    },
+    "performance": {
+      "compression": "Gzip压缩",
+      "caching": "静态资源长期缓存",
+      "optimization": "图片懒加载，CSS/JS优化"
+    }
+  }
+}
+
+
