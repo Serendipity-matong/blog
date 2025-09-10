@@ -108,6 +108,11 @@ body {
     z-index: 100;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    background: rgba(39, 39, 39, 0.3); /* 添加半透明背景，与右侧卡片背景保持一致 */
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+    border-radius: 20px; /* 添加圆角使其更加美观 */
+    margin: 20px 0; /* 添加上下边距 */
+    height: calc(100vh - 100px); /* 调整高度以配合边距 */
 }
 
 .profile-section::-webkit-scrollbar {
@@ -524,6 +529,11 @@ body {
         overflow-y: visible;
         grid-area: profile;
         align-items: center; /* 水平方向居中 */
+        background: rgba(39, 39, 39, 0.3); /* 保持背景一致性 */
+        backdrop-filter: blur(10px); /* 保持毛玻璃效果 */
+        border-radius: 20px; /* 保持圆角 */
+        padding: 20px; /* 添加内边距 */
+        margin: 0; /* 重置边距 */
     }
     
     .container {
@@ -550,6 +560,19 @@ body {
         overflow-y: visible;
         text-align: center;
         align-items: center;
+        order: -1; /* 确保头像区域始终在最上方 */
+        background: rgba(39, 39, 39, 0.3); /* 保持背景一致性 */
+        backdrop-filter: blur(10px); /* 保持毛玻璃效果 */
+        border-radius: 16px; /* 移动端稍小的圆角 */
+        padding: 20px; /* 添加内边距 */
+        margin: 0; /* 重置边距 */
+    }
+    
+    /* 平板端头像适配 */
+    .avatar {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 15px auto;
     }
     
     .container {
@@ -569,6 +592,24 @@ body {
             "footer";
     }
     
+    /* 信息和社交区域在移动端垂直排列 */
+    .info-social-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .info-blog-cards {
+        width: 100%;
+    }
+    
+    .info-card,
+    .blog-card {
+        width: 100%;
+        max-width: none;
+    }
+    
     .main-content {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -578,10 +619,13 @@ body {
         font-size: 2rem;
     }
     
+    /* 社交卡片在移动端改为2x2网格布局 */
     .social-section {
-        grid-template-columns: 1fr 1fr;
         display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         gap: 12px;
+        width: 100%;
     }
     
     .categories {
@@ -600,17 +644,40 @@ body {
 }
 
 @media (max-width: 480px) {
+    /* 手机端头像适配 */
+    .avatar {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 12px auto;
+    }
+    
     .username {
         font-size: 1.8rem;
     }
     
+    /* 手机端保持2x2网格布局 */
     .social-section {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+        width: 100%;
     }
     
+    .social-card {
+        height: 70px;
+        padding: 15px;
+    }
+    
+    /* 确保info card和blog card在手机端也是全宽 */
     .info-card,
     .blog-card {
+        width: 100%;
         padding: 20px;
+    }
+    
+    .info-social-wrapper {
+        width: 100%;
     }
     
     .top-right-icon {
@@ -619,6 +686,96 @@ body {
         width: 35px;
         height: 35px;
         font-size: 1rem;
+    }
+}
+
+/* 超小屏幕手机适配 (iPhone SE等) */
+@media (max-width: 375px) {
+    .avatar {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 10px auto;
+    }
+    
+    .username {
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+    }
+    
+    .motto {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    /* 超小屏幕保持2x2网格布局，但调小间距 */
+    .social-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+        width: 100%;
+    }
+    
+    .social-card {
+        height: 60px;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .platform-name {
+        font-size: 0.85rem;
+    }
+    
+    .container {
+        padding: 15px 12px;
+        gap: 12px;
+    }
+    
+    /* 确保信息卡片在小屏幕下的布局 */
+    .info-social-wrapper {
+        gap: 16px;
+    }
+}
+
+/* 极小屏幕适配 (320px及以下) */  
+@media (max-width: 320px) {
+    .avatar {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 8px auto;
+    }
+    
+    .username {
+        font-size: 1.4rem;
+    }
+    
+    /* 极小屏幕保持2x2网格布局，间距最小 */
+    .social-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 6px;
+        width: 100%;
+    }
+    
+    .social-card {
+        height: 55px;
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 12px 8px;
+        gap: 10px;
+    }
+    
+    /* 极小屏幕下的信息区域适配 */
+    .info-social-wrapper {
+        gap: 12px;
+    }
+    
+    .info-card,
+    .blog-card {
+        padding: 16px;
     }
 }
 
@@ -1451,10 +1608,32 @@ a.exhibition-card:hover {
         max-width: 800px;
     }
     
+    /* 中等屏幕下info-social区域垂直排列 */
     .info-social-wrapper {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         gap: 20px;
+        width: 100%;
+    }
+    
+    /* 确保info和blog卡片在中等屏幕下全宽显示 */
+    .info-blog-cards {
+        width: 100%;
+    }
+    
+    .info-card,
+    .blog-card {
+        width: 100%;
+        max-width: none;
+    }
+    
+    /* 中等屏幕下社交卡片使用2x2布局 */
+    .social-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 15px;
+        width: 100%;
     }
     
     .projects-section,
