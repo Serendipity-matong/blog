@@ -9,8 +9,9 @@
 }
 
 body {
-    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #0f0f0f;
+    font-family: 'Noto Sans SC', MaokenZhuyuanTi, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    background-color: #1b1b1b;
     color: #ffffff;
     line-height: 1.6;
     min-height: 100vh;
@@ -19,18 +20,41 @@ body {
 
 /* 容器布局 */
 .container {
-    max-width: 1200px;
+    max-width: 1320px; /* 增加容器最大宽度以适应更宽的内容 */
     margin: 0 auto;
     padding: 30px 20px;
+    padding-left: 400px; /* 为固定的profile留出足够空间：100px(left) + 280px(width) + 20px(间距) */
     display: grid;
-    grid-template-columns: 280px 1fr 280px;
-    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 820px; /* 调整为新的内容宽度 */
+    grid-template-rows: auto auto auto auto auto auto auto auto;
     gap: 20px;
     min-height: 100vh;
     grid-template-areas: 
-        "profile info social"
-        "profile blog social"
-        "articles articles articles";
+        "info-social"
+        "articles"
+        "projects"
+        "exhibitions"
+        "music"
+        "follow"
+        "contact"
+        "footer";
+}
+
+/* 信息和社交区域组合 */
+.info-social-wrapper {
+    grid-area: info-social;
+    display: grid;
+    grid-template-columns: 400px 400px; /* 让social cards与info card宽度一致 */
+    gap: 20px;
+    margin-top: 50px; /* 增加顶部距离 */
+    margin-bottom: 0;
+    width: 820px; /* 调整为新的总宽度 */
+}
+
+.info-blog-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* 主要内容区域 */
@@ -38,19 +62,47 @@ body {
     display: contents;
 }
 
-/* 左侧个人信息区域 */
+/* 左侧个人信息区域 - 固定定位 */
 .profile-section {
-    grid-area: profile;
+    position: fixed;
+    top: 150px;
+    left: 100px; /* 手动设置固定左偏移，您可以调整这个数值 */
+    width: 280px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* 水平方向居中 */
+    justify-content: flex-start; /* 垂直方向从顶部开始 */
+    text-align: center; /* 确保文本内容居中 */
     padding: 0;
+    z-index: 100;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.profile-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.profile-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.profile-section::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.profile-section::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .avatar {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
+    width: 130px; /* 放大头像 */
+    height: 130px;
+    margin: 0 auto 20px auto; /* 明确设置水平居中 */
 }
 
 .avatar-img {
@@ -59,19 +111,24 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #333;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 强制静态，禁用所有动画和变换 */
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
 }
 
 .avatar-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+    /* 完全禁用悬停效果 */
+    transform: none !important;
 }
 
 .username {
-    font-size: 2rem;
+    font-size: 2.4rem; /* 放大用户名 */
     font-weight: 600;
-    margin-bottom: 8px;
+    margin: 0 auto 8px auto; /* 明确设置水平居中 */
     color: #fff;
+    text-align: center; /* 确保用户名居中 */
+    width: 100%; /* 确保占满容器宽度 */
 }
 
 .motto {
@@ -79,51 +136,65 @@ body {
     color: #aaa;
     font-weight: 300;
     font-style: italic;
+    margin: 0 auto; /* 明确设置水平居中 */
+    text-align: center; /* 确保座右铭居中 */
+    width: 100%; /* 确保占满容器宽度 */
 }
 
 /* 信息卡片 */
 .info-card {
-    grid-area: info;
-    background: rgba(45, 45, 45, 0.8);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: fit-content;
+    background-color: #272727;
+    border-radius: 16px;
+    padding: 16px;
+    width: 400px;
+    height: 200px;
+    box-shadow: 4px 8px 12px rgba(39, 39, 39, 0.8);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #171616;
+    font-size: 14px;
+    font-family: MaokenZhuyuanTi, 'Noto Sans SC', sans-serif;
 }
 
 .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    background: rgba(#272727, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .display-name {
-    font-size: 1.4rem;
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 16px;
-    color: #fff;
+    margin-bottom: 8px;
+    color: #d4d3d3;
+    line-height: 1.2;
 }
 
 .description {
-    font-size: 1rem;
-    color: #ddd;
+    font-size: 16px;
+    color: #d4d3d3;
     margin-bottom: 8px;
     font-weight: 400;
+    line-height: 1.3;
 }
 
 .education {
-    font-size: 0.95rem;
-    color: #bbb;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    font-size: 16px;
+    color: #d4d3d3;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    font-weight: 400;
 }
 
 .more-link {
     color: #70a5ff;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.8rem;
     transition: color 0.3s ease;
 }
 
@@ -134,20 +205,20 @@ body {
 
 /* 博客卡片 */
 .blog-card {
-    grid-area: blog;
-    background: rgba(60, 90, 120, 0.9);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgb(42, 74, 107), #1a3a5a);
+    border-radius: 16px;
+    padding: 16px;
+    width: 400px;
+    height: 200px;
+    box-shadow: 4px 8px 12px rgba(42, 74, 107, 0.8);
+     border: 1px solid #3a5a7a;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: fit-content;
 }
 
 .blog-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(42, 74, 107, 0.3);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .blog-title {
@@ -182,6 +253,7 @@ body {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.8rem;
     transition: color 0.3s ease;
 }
 
@@ -192,18 +264,17 @@ body {
 
 /* 右侧社交平台区域 */
 .social-section {
-    grid-area: social;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 30px;
 }
 
 .social-card {
     border-radius: 12px;
-    padding: 16px;
+    padding: 20px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    height: 82px;
     position: relative;
     overflow: hidden;
 }
@@ -221,25 +292,30 @@ body {
 
 .social-card:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 /* 各平台特定颜色 */
 .social-card.zhihu {
-    background: linear-gradient(135deg, #0066ff, #0052cc);
+    background: linear-gradient(135deg, rgb(0, 102, 255), #0052cc);
+    box-shadow: 4px 8px 12px rgba(0, 102, 255, 0.8);
 }
 
 .social-card.bilibili {
-    background: linear-gradient(135deg, #fb7299, #e85d86);
+    background: linear-gradient(135deg, rgb(251, 114, 153), #e85d86);
+    box-shadow: 4px 8px 12px rgba(251, 114, 153, 0.8);
 }
 
 .social-card.github {
     background: linear-gradient(135deg, #333, #24292e);
+    box-shadow: 4px 8px 12px rgba(51, 51, 51, 0.8);
 }
 
 .social-card.jike {
     background: linear-gradient(135deg, #ffcd00, #e6b800);
     color: #333;
+    box-shadow: 4px 8px 12px rgba(255, 205, 0, 0.8);
 }
 
 .social-content {
@@ -269,6 +345,17 @@ body {
 
 .blog-articles-header {
     margin-bottom: 24px;
+    background-color: #272727;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 4px 8px 12px rgba(39, 39, 39, 0.8);
+    transition: all 0.3s ease;
+}
+
+.blog-articles-header:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .blog-icon {
@@ -277,7 +364,7 @@ body {
     gap: 8px;
     font-size: 1.2rem;
     font-weight: 600;
-    color: #fff;
+    color: #d4d3d3;
 }
 
 .blog-icon i {
@@ -293,7 +380,7 @@ body {
 }
 
 .category-btn {
-    background: #2a2a2a;
+    background: #272727;
     color: #ccc;
     border: none;
     padding: 8px 16px;
@@ -303,10 +390,11 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     border: 1px solid #444;
+    box-shadow: 4px 8px 12px rgba(42, 42, 42, 0.8);
 }
 
 .category-btn:hover {
-    background: #3a3a3a;
+    background: #272727;
     color: #fff;
     transform: translateY(-1px);
 }
@@ -315,6 +403,7 @@ body {
     background: #70a5ff;
     color: #fff;
     border-color: #70a5ff;
+    box-shadow: 4px 8px 12px rgba(112, 165, 255, 0.8);
 }
 
 /* 文章列表 */
@@ -325,7 +414,7 @@ body {
 }
 
 .article-item {
-    background: #1a1a1a;
+    background: #272727;
     border-radius: 12px;
     padding: 20px;
     border: 1px solid #333;
@@ -334,13 +423,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 4px 8px 12px rgba(26, 26, 26, 0.8);
 }
 
 .article-item:hover {
-    background: #252525;
+    background: #303030;
     border-color: #555;
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 35px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .article-title {
@@ -383,33 +474,70 @@ body {
     transform: scale(1.1);
 }
 
+/* 超宽屏幕优化 */
+@media (min-width: 1500px) {
+    .profile-section {
+        left: 150px; /* 超宽屏时稍微增加左偏移 */
+    }
+}
+
 /* 响应式设计 */
 @media (max-width: 1000px) {
+    .profile-section {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow-y: visible;
+        grid-area: profile;
+        align-items: center; /* 水平方向居中 */
+    }
+    
     .container {
-        grid-template-columns: 1fr 280px;
+        padding-left: 20px; /* 重置padding */
+        grid-template-columns: 280px 820px; /* 更新为新的内容宽度 */
         grid-template-areas: 
-            "profile social"
-            "info social"
-            "blog social"
-            "articles articles";
-        max-width: 800px;
+            "profile info-social"
+            "profile articles"
+            "profile projects"
+            "profile exhibitions"
+            "profile music"
+            "profile follow"
+            "profile contact"
+            "profile footer";
+        max-width: 1220px; /* 更新最大宽度 */
     }
 }
 
 @media (max-width: 768px) {
+    .profile-section {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow-y: visible;
+        text-align: center;
+        align-items: center;
+    }
+    
     .container {
         padding: 20px 15px;
+        padding-left: 15px; /* 重置padding */
         gap: 16px;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "profile"
+            "info-social"
+            "articles"
+            "projects"
+            "exhibitions"
+            "music"
+            "follow"
+            "contact"
+            "footer";
     }
     
     .main-content {
         grid-template-columns: 1fr;
         gap: 16px;
-    }
-    
-    .profile-section {
-        text-align: center;
-        align-items: center;
     }
     
     .username {
@@ -466,7 +594,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #272727;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -488,7 +616,7 @@ body {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
@@ -497,12 +625,12 @@ body {
 }
 
 .container > * {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.3s ease-out forwards;
 }
 
-.container > *:nth-child(1) { animation-delay: 0.1s; }
-.container > *:nth-child(2) { animation-delay: 0.2s; }
-.container > *:nth-child(3) { animation-delay: 0.3s; }
+.container > *:nth-child(1) { animation-delay: 0.05s; }
+.container > *:nth-child(2) { animation-delay: 0.1s; }
+.container > *:nth-child(3) { animation-delay: 0.15s; }
 
 /* 焦点样式 */
 .social-card:focus,
@@ -530,5 +658,852 @@ body {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* 可点击元素样式 */
+.clickable {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+}
+
+.clickable:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 项目卡片作为链接时的样式 */
+a.project-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a.project-card:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.project-card .project-link {
+    pointer-events: none; /* 防止嵌套链接 */
+    color: #8bb6ff;
+    text-decoration: none;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+/* 文章项目作为链接时的样式 */
+a.article-item {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a.article-item:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 展览卡片作为链接时的样式 */
+a.exhibition-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+a.exhibition-card:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 点击反馈效果 */
+.clickable:active {
+    transform: scale(0.98);
+}
+
+/* 查看更多按钮 */
+.view-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-more-btn {
+    background: #272727;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #444;
+    box-shadow: 4px 8px 12px rgba(42, 42, 42, 0.8);
+}
+
+.view-more-btn:hover {
+    background: #70a5ff;
+    border-color: #70a5ff;
+    transform: translateY(-2px);
+    
+    box-shadow: 0 10px 30px rgba(112, 165, 255, 0.5), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+/* 通用区域样式 */
+.projects-section,
+.exhibitions-section,
+.music-section,
+.follow-section,
+.contact-section,
+.footer-section {
+    margin-top: 40px;
+}
+
+.projects-section {
+    grid-area: projects;
+    width: 820px;
+}
+
+.exhibitions-section {
+    grid-area: exhibitions;
+    width: 820px;
+}
+
+.music-section {
+    grid-area: music;
+    width: 820px;
+}
+
+.follow-section {
+    grid-area: follow;
+    width: 820px;
+}
+
+.contact-section {
+    grid-area: contact;
+    width: 820px;
+}
+
+.footer-section {
+    grid-area: footer;
+    width: 820px;
+}
+
+.blog-section {
+    grid-area: articles;
+    width: 820px;
+}
+
+/* 通用区域标题样式 */
+.section-header {
+    margin-bottom: 24px;
+    background-color: #272727;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 4px 8px 12px rgba(39, 39, 39, 0.8);
+    transition: all 0.3s ease;
+}
+
+.section-header:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.section-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #d4d3d3;
+}
+
+.section-icon i {
+    color: #70a5ff;
+    font-size: 1.2rem;
+}
+
+/* 个人项目区域样式 */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 200px); /* 固定行高 */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.project-card {
+    background: #272727;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 4px 8px 12px rgba(39, 39, 39, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* 填满网格单元高度 */
+    width: 100%; /* 填满网格单元宽度 */
+}
+
+/* 单个项目接近正方形，合并项目为长方形 */
+/* 项目2,3,4,5为单个正方形项目 */
+/* 项目1,6为合并长方形项目 */
+
+.project-card:hover {
+    background: #303030;
+    border-color: #555;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.project-card.featured {
+    background: linear-gradient(135deg, #1a3a5a, #2a4a6a);
+    border-color: #3a5a7a;
+    box-shadow: 4px 8px 12px rgba(26, 58, 90, 0.8);
+}
+
+.project-card.popular {
+    background: linear-gradient(135deg, #3a1a5a, #4a2a6a);
+    border-color: #5a3a7a;
+    box-shadow: 4px 8px 12px rgba(58, 26, 90, 0.8);
+}
+
+/* 网格布局定位 - 第一行前两块合并，第二行后两块合并 */
+.project-card:nth-child(1) {
+    grid-column: 1 / 3; /* 占据第1、2列 */
+    grid-row: 1;
+}
+
+.project-card:nth-child(2) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.project-card:nth-child(3) {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.project-card:nth-child(4) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.project-card:nth-child(5) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.project-card:nth-child(6) {
+    grid-column: 3 / 5; /* 占据第3、4列 */
+    grid-row: 2;
+}
+
+.project-card.featured::before,
+.project-card.popular::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.project-card.featured::before {
+    border-width: 0 50px 50px 0;
+    border-color: transparent #70a5ff transparent transparent;
+}
+
+.project-card.popular::before {
+    border-width: 0 50px 50px 0;
+    border-color: transparent #ff6b6b transparent transparent;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.project-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    flex: 1;
+    margin-right: 8px;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.project-type {
+    font-size: 0.8rem;
+    color: #888;
+    background: #272727;
+    padding: 4px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.project-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.stat-item i {
+    color: #70a5ff;
+}
+
+.project-links {
+    margin-top: auto;
+}
+
+.project-link {
+    color: #8bb6ff;
+    text-decoration: none;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #7aa8ff;
+    text-decoration: underline;
+}
+
+/* GitHub 链接样式 */
+.github-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #24292e;
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #444;
+    box-shadow: 4px 8px 12px rgba(36, 41, 46, 0.8);
+}
+
+.github-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.github-btn i {
+    font-size: 1.2rem;
+}
+
+.total-stars {
+    background: #70a5ff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+/* 逛展日记区域样式 */
+.exhibitions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.exhibition-card {
+    background: #272727;
+    border-radius: 16px;
+    padding: 0;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 4px 8px 12px rgba(26, 26, 26, 0.8);
+}
+
+.exhibition-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    border-color: #555;
+}
+
+.exhibition-image {
+    height: 200px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #333;
+}
+
+.exhibition-image i {
+    font-size: 3rem;
+    color: #555;
+}
+
+.exhibition-title {
+    padding: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* 音乐创作区域样式 */
+.music-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.music-item {
+    background: #272727;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 4px 8px 12px rgba(26, 26, 26, 0.8);
+}
+
+.music-item:hover {
+    background: #303030;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.music-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.music-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.music-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #888;
+    white-space: nowrap;
+}
+
+.music-stats i {
+    color: #70a5ff;
+}
+
+/* Bilibili 链接样式 */
+.bilibili-link {
+    text-align: center;
+}
+
+.bilibili-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #ff6b9d, #f093c1);
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 4px 8px 12px rgba(255, 107, 157, 0.8);
+}
+
+.bilibili-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 107, 157, 0.5), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.bilibili-btn i {
+    font-size: 1.2rem;
+}
+
+/* 关注区域样式 */
+.follow-platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.follow-platform {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #272727;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 4px 8px 12px rgba(26, 26, 26, 0.8);
+}
+
+.follow-platform:hover {
+    background: #303030;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.follow-platform i {
+    font-size: 2rem;
+    width: 40px;
+    text-align: center;
+}
+
+.follow-platform.zhihu i {
+    color: #0066ff;
+}
+
+.follow-platform.bilibili i {
+    color: #ff6b9d;
+}
+
+.follow-platform.github i {
+    color: #fff;
+}
+
+.follow-platform.jike i {
+    color: #ffcd00;
+}
+
+.platform-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.platform-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.platform-followers {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* 联系方式区域样式 */
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #272727;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 4px 8px 12px rgba(26, 26, 26, 0.8);
+}
+
+.contact-item:hover {
+    background: #303030;
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    width: 30px;
+    text-align: center;
+}
+
+.contact-item.email i {
+    color: #ff6b6b;
+}
+
+.contact-item.qq i {
+    color: #1aad19;
+}
+
+.contact-item.telegram i {
+    color: #0088cc;
+}
+
+.contact-item.twitter i {
+    color: #1da1f2;
+}
+
+.contact-item span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* 页脚区域样式 */
+.footer-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #333;
+}
+
+.footer-content {
+    text-align: center;
+    color: #888;
+}
+
+.footer-text {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.footer-tech,
+.footer-inspiration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.footer-tech a,
+.footer-inspiration a {
+    color: #70a5ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-tech a:hover,
+.footer-inspiration a:hover {
+    color: #5a93ff;
+    text-decoration: underline;
+}
+
+/* 响应式设计更新 */
+@media (max-width: 1000px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "profile"
+            "info-social"
+            "articles"
+            "projects"
+            "exhibitions"
+            "music"
+            "follow"
+            "contact"
+            "footer";
+        max-width: 800px;
+    }
+    
+    .info-social-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 20px;
+    }
+    
+    .projects-section,
+    .exhibitions-section,
+    .music-section,
+    .follow-section,
+    .contact-section,
+    .footer-section,
+    .blog-section {
+        width: 100%;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 150px); /* 中等屏幕调整行高 */
+        gap: 15px;
+    }
+    
+    /* 保持相同的网格定位 */
+    .project-card:nth-child(1) {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    }
+    
+    .project-card:nth-child(2) {
+        grid-column: 3;
+        grid-row: 1;
+    }
+    
+    .project-card:nth-child(3) {
+        grid-column: 4;
+        grid-row: 1;
+    }
+    
+    .project-card:nth-child(4) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .project-card:nth-child(5) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .project-card:nth-child(6) {
+        grid-column: 3 / 5;
+        grid-row: 2;
+    }
+    
+    .exhibitions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "profile"
+            "info-social"
+            "articles"
+            "projects"
+            "exhibitions"
+            "music"
+            "follow"
+            "contact"
+            "footer";
+        padding: 20px 15px;
+        gap: 16px;
+    }
+    
+    .info-social-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-card,
+    .blog-card {
+        width: 100%;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 180px); /* 小屏幕单列布局 */
+        gap: 15px;
+    }
+    
+    /* 小屏幕下所有项目重置为单列排列 */
+    .project-card:nth-child(n) {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+    
+    .exhibitions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .follow-platforms {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .music-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .project-title {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card,
+    .exhibition-card,
+    .music-item,
+    .follow-platform,
+    .contact-item {
+        padding: 16px;
+    }
+    
+    .github-btn,
+    .bilibili-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-icon {
+        font-size: 1.1rem;
+    }
+    
+    .footer-tech,
+    .footer-inspiration {
+        flex-wrap: wrap;
     }
 }

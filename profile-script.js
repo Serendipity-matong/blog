@@ -39,10 +39,10 @@ const articlesData = {
 
 // 社交平台链接
 const socialLinks = {
-    zhihu: 'https://www.zhihu.com/people/idealclover',
-    bilibili: 'https://space.bilibili.com/504404093',
-    github: 'https://github.com/idealclover',
-    jike: 'https://okjike.com/u/idealclover'
+    zhihu: 'https://www.zhihu.com/people/matong-65',
+    bilibili: 'https://space.bilibili.com/479915630',
+    github: 'https://github.com/Serendipity-matong',
+    douyin: 'https://www.douyin.com/user/MS4wLjABAAAA8wFPl4Q5vw6WSBvaeZ-9cuvKgvBmhVGMTH8b88qLLrU?from_tab_name=main'
 };
 
 // DOM加载完成后执行
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSocialLinks();
     initializeKeyboardNavigation();
     initializePerformanceMonitoring();
+    initializeNewSections();
 });
 
 /**
@@ -92,7 +93,7 @@ function handleCategoryClick(button) {
     button.style.transform = 'scale(0.95)';
     setTimeout(() => {
         button.style.transform = '';
-    }, 150);
+    }, 80);
     
     // 更新文章列表
     updateArticlesList(category);
@@ -117,19 +118,19 @@ function updateArticlesList(category) {
         articles.forEach((article, index) => {
             const articleElement = createArticleElement(article);
             articleElement.style.opacity = '0';
-            articleElement.style.transform = 'translateY(20px)';
+            articleElement.style.transform = 'translateY(10px)';
             articlesList.appendChild(articleElement);
             
             // 延迟显示动画
             setTimeout(() => {
-                articleElement.style.transition = 'all 0.4s ease';
+                articleElement.style.transition = 'all 0.2s ease';
                 articleElement.style.opacity = '1';
                 articleElement.style.transform = 'translateY(0)';
-            }, index * 50);
+            }, index * 30);
         });
         
         // 淡入容器
-        articlesList.style.transition = 'all 0.4s ease';
+        articlesList.style.transition = 'all 0.2s ease';
         articlesList.style.opacity = '1';
         articlesList.style.transform = 'translateY(0)';
         
@@ -252,7 +253,7 @@ function initializeSocialLinks() {
                 setTimeout(() => {
                     this.style.transform = '';
                     window.open(url, '_blank');
-                }, 150);
+                }, 80);
             }
         });
         
@@ -273,8 +274,8 @@ function initializeSocialLinks() {
 function initializeAnimations() {
     // 观察器配置
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px -20px 0px'
     };
     
     // 创建交叉观察器
@@ -290,10 +291,10 @@ function initializeAnimations() {
     
     // 观察所有需要动画的元素
     const animatedElements = document.querySelectorAll('.social-card, .article-item');
-    animatedElements.forEach(el => {
+    animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
+        el.style.transform = 'translateY(15px)';
+        el.style.transition = `all 0.3s ease ${Math.min(index * 0.03, 0.15)}s`;
         observer.observe(el);
     });
 }
@@ -306,12 +307,13 @@ function initializeScrollEffects() {
     
     function updateScrollPosition() {
         const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.avatar-img');
+        // 移除对头像的视差效果，保持头像静态
+        // const parallaxElements = document.querySelectorAll('.avatar-img');
         
-        parallaxElements.forEach(el => {
-            const speed = 0.5;
-            el.style.transform = `translateY(${scrolled * speed}px)`;
-        });
+        // parallaxElements.forEach(el => {
+        //     const speed = 0.5;
+        //     el.style.transform = `translateY(${scrolled * speed}px)`;
+        // });
         
         ticking = false;
     }
@@ -379,7 +381,7 @@ function showNotification(message) {
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
-    }, 100);
+    }, 50);
     
     // 自动隐藏
     setTimeout(() => {
@@ -387,8 +389,8 @@ function showNotification(message) {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
             notification.remove();
-        }, 300);
-    }, 3000);
+        }, 200);
+    }, 2500);
 }
 
 /**
@@ -497,9 +499,552 @@ window.addEventListener('load', function() {
     document.body.classList.add('loaded');
 });
 
+/**
+ * 初始化新添加的内容区域
+ */
+function initializeNewSections() {
+    initializeProjectCards();
+    initializeViewMoreButton();
+    initializeExhibitionCards();
+    initializeMusicCards();
+    initializeContactItems();
+    initializeFollowPlatforms();
+    initializeNewAnimations();
+}
+
+/**
+ * 初始化项目卡片交互
+ */
+function initializeProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        // 添加悬停效果增强
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-6px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+        
+        // 添加点击效果
+        card.addEventListener('click', function(e) {
+            createRippleEffect(e, this);
+            
+            // 获取项目链接
+            const projectLink = this.querySelector('.project-link');
+            if (projectLink) {
+                setTimeout(() => {
+                    window.open(projectLink.href, '_blank');
+                }, 100);
+            } else {
+                const projectTitle = this.querySelector('.project-title').textContent;
+                showNotification(`项目详情：${projectTitle}`);
+            }
+        });
+        
+        // 键盘支持
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+    
+    // GitHub 按钮特殊处理
+    const githubBtn = document.querySelector('.github-btn');
+    if (githubBtn) {
+        githubBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = '';
+            window.open(this.href, '_blank');
+        }, 80);
+        });
+    }
+}
+
+/**
+ * 初始化查看更多按钮
+ */
+function initializeViewMoreButton() {
+    const viewMoreBtn = document.querySelector('.view-more-btn');
+    
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', function() {
+            // 添加加载动画
+            const originalText = this.textContent;
+            this.textContent = '加载中...';
+            this.disabled = true;
+            
+        // 模拟加载更多文章
+        setTimeout(() => {
+            // 这里可以添加加载更多文章的逻辑
+            showNotification('已加载更多文章');
+            this.textContent = originalText;
+            this.disabled = false;
+        }, 800);
+        });
+        
+        // 悬停效果增强
+        viewMoreBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        
+        viewMoreBtn.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    }
+}
+
+/**
+ * 初始化展览卡片
+ */
+function initializeExhibitionCards() {
+    const exhibitionCards = document.querySelectorAll('.exhibition-card');
+    
+    exhibitionCards.forEach((card, index) => {
+        // 添加点击效果
+        card.addEventListener('click', function() {
+            const title = this.querySelector('.exhibition-title').textContent;
+            showNotification(`正在查看：${title}`);
+            
+            // 添加点击动画
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 80);
+        });
+        
+        // 图片懒加载效果
+        const exhibitionImage = card.querySelector('.exhibition-image');
+        if (exhibitionImage) {
+            // 模拟图片加载
+            setTimeout(() => {
+                exhibitionImage.style.background = `linear-gradient(135deg, #2a2a2a, #1a1a1a), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23333"/><text x="50" y="55" font-family="Arial" font-size="12" fill="%23666" text-anchor="middle">展览图片</text></svg>')`;
+                exhibitionImage.style.backgroundSize = 'cover';
+                exhibitionImage.style.backgroundPosition = 'center';
+            }, index * 200);
+        }
+        
+        // 键盘支持
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+}
+
+/**
+ * 初始化音乐卡片
+ */
+function initializeMusicCards() {
+    const musicItems = document.querySelectorAll('.music-item');
+    
+    musicItems.forEach(item => {
+        const playIcon = item.querySelector('.music-stats i');
+        
+        // 添加播放动画
+        item.addEventListener('click', function() {
+            const title = this.querySelector('.music-title').textContent;
+            
+            // 播放图标动画
+            if (playIcon) {
+                playIcon.style.animation = 'spin 0.5s ease-in-out';
+                setTimeout(() => {
+                    playIcon.style.animation = '';
+                }, 500);
+            }
+            
+            showNotification(`正在播放：${title}`);
+        });
+        
+        // 悬停时播放图标旋转
+        item.addEventListener('mouseenter', function() {
+            if (playIcon) {
+                playIcon.style.transform = 'rotate(15deg) scale(1.1)';
+                playIcon.style.color = '#70a5ff';
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            if (playIcon) {
+                playIcon.style.transform = '';
+                playIcon.style.color = '';
+            }
+        });
+        
+        // 键盘支持
+        item.setAttribute('tabindex', '0');
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+    
+    // Bilibili 按钮处理
+    const bilibiliBtn = document.querySelector('.bilibili-btn');
+    if (bilibiliBtn) {
+        bilibiliBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = '';
+            window.open(this.href, '_blank');
+        }, 80);
+        });
+    }
+}
+
+/**
+ * 初始化联系方式
+ */
+function initializeContactItems() {
+    const contactItems = document.querySelectorAll('.contact-item');
+    
+    contactItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            const contactText = this.querySelector('span').textContent;
+            
+            // 根据联系方式类型处理
+            if (this.classList.contains('email')) {
+                // 邮箱链接保持默认行为
+                return;
+            } else if (this.classList.contains('qq')) {
+                e.preventDefault();
+                const qqNumber = contactText.split(': ')[1];
+                copyToClipboard(qqNumber);
+                showNotification(`QQ号已复制到剪贴板：${qqNumber}`);
+            } else if (this.classList.contains('telegram') || this.classList.contains('twitter')) {
+                // 社交媒体链接保持默认行为
+                return;
+            }
+        });
+        
+        // 悬停效果
+        item.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2) rotate(5deg)';
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = '';
+            }
+        });
+    });
+}
+
+/**
+ * 初始化关注平台
+ */
+function initializeFollowPlatforms() {
+    const followPlatforms = document.querySelectorAll('.follow-platform');
+    
+    followPlatforms.forEach(platform => {
+        platform.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const platformName = this.querySelector('.platform-name').textContent;
+            
+            // 添加点击动画
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+                showNotification(`正在跳转到${platformName}`);
+                // 这里可以添加实际的跳转逻辑
+            }, 80);
+        });
+        
+        // 图标动画
+        platform.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.1) rotate(-5deg)';
+            }
+        });
+        
+        platform.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = '';
+            }
+        });
+    });
+}
+
+/**
+ * 初始化新区域的动画
+ */
+function initializeNewAnimations() {
+    const observerOptions = {
+        threshold: 0.05,
+        rootMargin: '0px 0px -20px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // 观察新添加的元素
+    const newElements = document.querySelectorAll(`
+        .project-card,
+        .exhibition-card,
+        .music-item,
+        .follow-platform,
+        .contact-item,
+        .section-header
+    `);
+    
+    newElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = `all 0.3s ease ${Math.min(index * 0.05, 0.3)}s`;
+        observer.observe(el);
+    });
+}
+
+/**
+ * 复制到剪贴板
+ */
+function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    } else {
+        // 降级处理
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'absolute';
+        textArea.style.left = '-999999px';
+        document.body.prepend(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+        } catch (error) {
+            console.error('复制失败:', error);
+        } finally {
+            textArea.remove();
+        }
+    }
+}
+
+// 添加新的CSS动画
+const newAnimationsCSS = `
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .animate-in {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    .project-card.featured::after {
+        content: '推荐';
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #70a5ff;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        z-index: 2;
+    }
+    
+    .project-card.popular::after {
+        content: '热门';
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #ff6b6b;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        z-index: 2;
+    }
+    
+    .music-item:hover .music-stats i {
+        animation: pulse 0.6s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+    
+    .contact-item:hover {
+        background: linear-gradient(135deg, #252525, #2a2a2a);
+    }
+    
+    .exhibition-image {
+        transition: all 0.2s ease;
+    }
+    
+    .exhibition-card:hover .exhibition-image {
+        transform: scale(1.05);
+    }
+`;
+
+// 动态添加新的CSS
+const newStyle = document.createElement('style');
+newStyle.textContent = newAnimationsCSS;
+document.head.appendChild(newStyle);
+
+// 显示即将推出提示
+function showComingSoon(itemName) {
+    // 移除现有的提示
+    const existingToast = document.querySelector('.coming-soon-toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // 创建新的提示
+    const toast = document.createElement('div');
+    toast.className = 'coming-soon-toast';
+    toast.innerHTML = `
+        <div class="toast-content">
+            <i class="fas fa-clock"></i>
+            <div class="toast-text">
+                <h4>${itemName}</h4>
+                <p>详细页面即将推出，敬请期待！</p>
+            </div>
+        </div>
+    `;
+    
+    toast.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        background: #272727;
+        color: #ffffff;
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 
+            8px 16px 32px rgba(0, 0, 0, 0.8),
+            0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        z-index: 1001;
+        opacity: 0;
+        transition: all 0.3s ease;
+        border: 1px solid #444444;
+        max-width: 400px;
+        width: 90%;
+        backdrop-filter: blur(20px);
+    `;
+    
+    // 添加样式
+    if (!document.querySelector('#coming-soon-styles')) {
+        const style = document.createElement('style');
+        style.id = 'coming-soon-styles';
+        style.textContent = `
+            .toast-content {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            
+            .toast-content i {
+                font-size: 2rem;
+                color: #70a5ff;
+                flex-shrink: 0;
+            }
+            
+            .toast-text h4 {
+                margin: 0 0 8px 0;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #ffffff;
+            }
+            
+            .toast-text p {
+                margin: 0;
+                font-size: 0.9rem;
+                color: #cccccc;
+                line-height: 1.4;
+            }
+            
+            .coming-soon-toast::before {
+                content: '';
+                position: absolute;
+                top: -1px;
+                left: -1px;
+                right: -1px;
+                bottom: -1px;
+                background: linear-gradient(135deg, rgba(112, 165, 255, 0.3), rgba(112, 165, 255, 0.1));
+                border-radius: inherit;
+                z-index: -1;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(toast);
+    
+    // 显示动画
+    requestAnimationFrame(() => {
+        toast.style.opacity = '1';
+        toast.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+    
+    // 点击关闭
+    toast.addEventListener('click', () => {
+        hideComingSoonToast(toast);
+    });
+    
+    // 自动隐藏
+    setTimeout(() => {
+        hideComingSoonToast(toast);
+    }, 4000);
+    
+    // ESC键关闭
+    function handleEscape(e) {
+        if (e.key === 'Escape') {
+            hideComingSoonToast(toast);
+            document.removeEventListener('keydown', handleEscape);
+        }
+    }
+    document.addEventListener('keydown', handleEscape);
+}
+
+// 隐藏即将推出提示
+function hideComingSoonToast(toast) {
+    if (toast && toast.parentNode) {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.remove();
+            }
+        }, 300);
+    }
+}
+
 // 导出工具函数
 window.profileUtils = {
     switchCategory: handleCategoryClick,
     showNotification: showNotification,
-    createRipple: createRippleEffect
+    createRipple: createRippleEffect,
+    copyToClipboard: copyToClipboard,
+    showComingSoon: showComingSoon
 };
