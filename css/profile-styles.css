@@ -842,15 +842,15 @@ a.exhibition-card:hover {
 }
 
 .project-card {
-    background: #272727;
+    background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
     border-radius: 16px;
     padding: 20px;
-    border: 1px solid #333;
+    border: 1px solid #3a3a3a;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 4px 8px 12px rgba(39, 39, 39, 0.8);
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -863,23 +863,64 @@ a.exhibition-card:hover {
 /* 项目1,6为合并长方形项目 */
 
 .project-card:hover {
-    background: #303030;
-    border-color: #555;
+    background: linear-gradient(135deg, #333333, #252525);
+    border-color: #4a4a4a;
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.4), 
-                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    box-shadow: 0 16px 40px rgba(255, 255, 255, 0.15), 
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
-.project-card.featured {
-    background: linear-gradient(135deg, #1a3a5a, #2a4a6a);
-    border-color: #3a5a7a;
-    box-shadow: 4px 8px 12px rgba(26, 58, 90, 0.8);
+
+/* 航空降雨大气预测 - 天蓝色主题 */
+.project-card.special-weather {
+    background: linear-gradient(135deg, #31ad73, #13a75d);
+    border-color: #52feae;
+    box-shadow: 4px 8px 16px rgba(15, 133, 60, 0.7);
 }
 
-.project-card.popular {
-    background: linear-gradient(135deg, #3a1a5a, #4a2a6a);
-    border-color: #5a3a7a;
-    box-shadow: 4px 8px 12px rgba(58, 26, 90, 0.8);
+.project-card.special-weather:hover {
+    background: linear-gradient(135deg, #46fa7f, #30fd63);
+    border-color: #70ffb8;
+    box-shadow: 0 16px 40px rgba(15, 133, 60, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* linkbox - 橙色主题 */
+.project-card.special-linkbox {
+    background: linear-gradient(135deg, #cf7332, #d87518);
+    border-color: #f28d42;
+    box-shadow: 4px 8px 16px rgba(208, 118, 54, 0.7);
+}
+
+.project-card.special-linkbox:hover {
+    background: linear-gradient(135deg, #e5824a, #f28d42);
+    border-color: #ff9f5a;
+    box-shadow: 0 16px 40px rgba(208, 118, 54, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* 教室白板识别 - 绿色主题（无角标） */
+.project-card.special-whiteboard {
+    background: linear-gradient(135deg, #11be47, #15922e);
+    border-color: #2bd044;
+    box-shadow: 4px 8px 16px rgba(28, 201, 86, 0.7);
+}
+
+.project-card.special-whiteboard:hover {
+    background: linear-gradient(135deg, #20d055, #1fb545);
+    border-color: #40e860;
+    box-shadow: 0 16px 40px rgba(28, 201, 86, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* Ascend C - 蓝色主题（无角标） */
+.project-card.special-ascend {
+    background: linear-gradient(135deg, #0f77ff, #3791ff);
+    border-color: #4a90ff;
+    box-shadow: 4px 8px 16px rgba(30, 99, 188, 0.7);
+}
+
+.project-card.special-ascend:hover {
+    background: linear-gradient(135deg, #2a8aff, #4da3ff);
+    border-color: #6bb0ff;
+    box-shadow: 0 16px 40px rgba(30, 99, 188, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
 /* 网格布局定位 - 第一行前两块合并，第二行后两块合并 */
@@ -913,26 +954,7 @@ a.exhibition-card:hover {
     grid-row: 2;
 }
 
-.project-card.featured::before,
-.project-card.popular::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
 
-.project-card.featured::before {
-    border-width: 0 50px 50px 0;
-    border-color: transparent #70a5ff transparent transparent;
-}
-
-.project-card.popular::before {
-    border-width: 0 50px 50px 0;
-    border-color: transparent #ff6b6b transparent transparent;
-}
 
 .project-header {
     display: flex;
@@ -956,11 +978,36 @@ a.exhibition-card:hover {
 
 .project-type {
     font-size: 0.8rem;
-    color: #888;
+    color: #fff;
     background: #272727;
     padding: 4px 8px;
     border-radius: 8px;
     white-space: nowrap;
+}
+
+/* 为不同项目类型设置匹配的标签颜色 */
+.project-card.special-weather .project-type {
+    background: rgba(82, 254, 174, 0.2);
+    color: #fff;
+    border: 1px solid rgba(82, 254, 174, 0.3);
+}
+
+.project-card.special-linkbox .project-type {
+    background: rgba(242, 141, 66, 0.2);
+    color: #fff;
+    border: 1px solid rgba(242, 141, 66, 0.3);
+}
+
+.project-card.special-whiteboard .project-type {
+    background: rgba(64, 232, 96, 0.2);
+    color: #fff;
+    border: 1px solid rgba(64, 232, 96, 0.3);
+}
+
+.project-card.special-ascend .project-type {
+    background: rgba(77, 163, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(77, 163, 255, 0.3);
 }
 
 .project-description {
@@ -985,7 +1032,7 @@ a.exhibition-card:hover {
 }
 
 .stat-item i {
-    color: #70a5ff;
+    color: #1f2632;
 }
 
 .project-links {
@@ -993,7 +1040,7 @@ a.exhibition-card:hover {
 }
 
 .project-link {
-    color: #8bb6ff;
+    color: #96bdff;
     text-decoration: none;
     font-family: 'Monaco', 'Menlo', monospace;
     font-size: 0.85rem;
@@ -1001,7 +1048,7 @@ a.exhibition-card:hover {
 }
 
 .project-link:hover {
-    color: #7aa8ff;
+    color: #000000;
     text-decoration: underline;
 }
 
@@ -1081,6 +1128,18 @@ a.exhibition-card:hover {
 .exhibition-image i {
     font-size: 3rem;
     color: #555;
+}
+
+.exhibition-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.exhibition-card:hover .exhibition-img {
+    transform: scale(1.05);
 }
 
 .exhibition-title {

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客详情 - 梯度编码技术：分布式学习中的容错机制</title>
+    <link rel="stylesheet" href="../css/detail-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="blog-theme">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回主页</span>
+            </a>
+            <div class="nav-type">
+                <i class="fas fa-blog"></i>
+                <span>博客文章</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="detail-container">
+        <!-- 文章标题区域 -->
+        <div class="detail-header">
+            <div class="header-content">
+                <div class="project-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>学术</span>
+                </div>
+                <h1 class="detail-title">梯度编码技术：分布式学习中的容错机制</h1>
+                <p class="detail-subtitle">基于编码理论的分布式机器学习容错方案，通过冗余编码实现对拖尾节点和故障节点的鲁棒性。</p>
+                <div class="detail-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-eye"></i>
+                        <span>756 阅读</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-heart"></i>
+                        <span>58 喜欢</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>2024.05.08</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <div class="detail-content">
+            <div class="content-wrapper">
+                <!-- 文章内容 -->
+                <div class="main-content">
+                    <section class="content-section">
+                        <h2>引言与动机</h2>
+                        <p>分布式机器学习系统面临的一个关键挑战是<strong>拖尾节点问题</strong>（Straggler Problem）。在大规模集群中，总有一些节点由于硬件差异、网络延迟或资源竞争等原因运行较慢，导致整个系统需要等待最慢的节点完成计算。</p>
+                        
+                        <h3>拖尾节点的影响</h3>
+                        <ul>
+                            <li><strong>性能瓶颈</strong>：系统速度受限于最慢节点</li>
+                            <li><strong>资源浪费</strong>：快速节点空闲等待慢速节点</li>
+                            <li><strong>扩展性差</strong>：节点越多，拖尾概率越大</li>
+                            <li><strong>不确定性</strong>：拖尾节点的身份动态变化</li>
+                        </ul>
+
+                        <h3>传统解决方案的局限</h3>
+                        <div class="comparison">
+                            <div class="comparison-item">
+                                <h4>忽略慢节点</h4>
+                                <ul>
+                                    <li>❌ 丢失数据信息</li>
+                                    <li>❌ 收敛性受影响</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-item">
+                                <h4>复制计算</h4>
+                                <ul>
+                                    <li>❌ 计算资源浪费</li>
+                                    <li>❌ 扩展性问题</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>编码理论的启发</h3>
+                        <p>梯度编码借鉴了信息论中的纠错编码思想：通过引入<strong>系统性冗余</strong>，使得即使部分计算结果丢失，仍能恢复出完整的梯度信息。</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>梯度编码基本原理</h2>
+                        
+                        <h3>问题设置</h3>
+                        <p>考虑分布式优化问题，数据矩阵 $\mathbf{A} \in \mathbb{R}^{m \times d}$ 被水平分割为s个子矩阵：</p>
+                        
+                        <div class="math-block">
+                            $$\mathbf{A} = \begin{bmatrix} \mathbf{A}_1 \\ \mathbf{A}_2 \\ \vdots \\ \mathbf{A}_s \end{bmatrix}$$
+                        </div>
+                        
+                        <p>目标是计算全局梯度：</p>
+                        <div class="math-block">
+                            $$\nabla f(\mathbf{x}) = \frac{1}{m} \sum_{i=1}^s \mathbf{A}_i^T \nabla f_i(\mathbf{A}_i \mathbf{x})$$
+                        </div>
+
+                        <h3>编码策略</h3>
+                        <p>梯度编码的核心思想是创建$n > s$个编码任务，分发给$n$个工作节点，使得任意$s$个完成的任务就足以恢复完整梯度。</p>
+                        
+                        <div class="algorithm-box">
+                            <h4>算法1: 基础梯度编码</h4>
+                            <ol>
+                                <li><strong>编码阶段</strong>: 
+                                    <ul>
+                                        <li>选择生成矩阵 $\mathbf{G} \in \mathbb{R}^{n \times s}$</li>
+                                        <li>计算编码数据: $\tilde{\mathbf{A}}_i = \sum_{j=1}^s G_{i,j} \mathbf{A}_j$</li>
+                                    </ul>
+                                </li>
+                                <li><strong>分发计算</strong>: 第$i$个节点计算 $\tilde{\mathbf{g}}_i = \nabla f(\tilde{\mathbf{A}}_i \mathbf{x})$</li>
+                                <li><strong>解码恢复</strong>: 收集任意$s$个结果，解线性方程组恢复原始梯度</li>
+                            </ol>
+                        </div>
+
+                        <h3>MDS编码的应用</h3>
+                        <p>最大距离可分离（MDS）编码提供了最优的存储-容错权衡。常用的包括：</p>
+                        
+                        <ul>
+                            <li><strong>Reed-Solomon码</strong>: 基于范德蒙德矩阵</li>
+                            <li><strong>Cauchy码</strong>: 基于Cauchy矩阵</li>
+                            <li><strong>随机线性码</strong>: 随机生成的编码矩阵</li>
+                        </ul>
+
+                        <h3>Reed-Solomon梯度编码</h3>
+                        <p>使用范德蒙德矩阵作为生成矩阵：</p>
+                        
+                        <div class="math-block">
+                            $$\mathbf{G} = \begin{bmatrix}
+                            1 & \alpha_1 & \alpha_1^2 & \cdots & \alpha_1^{s-1} \\
+                            1 & \alpha_2 & \alpha_2^2 & \cdots & \alpha_2^{s-1} \\
+                            \vdots & \vdots & \vdots & \ddots & \vdots \\
+                            1 & \alpha_n & \alpha_n^2 & \cdots & \alpha_n^{s-1}
+                            \end{bmatrix}$$
+                        </div>
+                        
+                        <p>其中 $\alpha_1, \alpha_2, \ldots, \alpha_n$ 是有限域中的不同元素。</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>理论分析</h2>
+                        
+                        <h3>容错能力</h3>
+                        <div class="theorem-box">
+                            <h4>定理1 (容错保证)</h4>
+                            <p>使用$(n,s)$-MDS码的梯度编码方案可以容忍最多$n-s$个拖尾节点，即只需等待任意$s$个节点完成计算即可恢复完整梯度。</p>
+                        </div>
+
+                        <h3>通信复杂度</h3>
+                        <p>相比于传统方法，梯度编码的通信开销为：</p>
+                        
+                        <ul>
+                            <li><strong>编码开销</strong>: 数据分发阶段增加 $\frac{n-s}{s}$ 倍开销</li>
+                            <li><strong>解码开销</strong>: 矩阵求逆操作 $O(s^3)$</li>
+                            <li><strong>总体收益</strong>: 大幅减少等待时间</li>
+                        </ul>
+
+                        <h3>收敛性保证</h3>
+                        <div class="theorem-box">
+                            <h4>定理2 (收敛性)</h4>
+                            <p>在凸优化设定下，梯度编码SGD保持与无拖尾情况相同的收敛率：</p>
+                            $$\mathbb{E}[f(\mathbf{x}_T) - f(\mathbf{x}^*)] \leq O\left(\frac{\sigma^2}{T}\right)$$
+                            <p>其中$T$是迭代次数，$\sigma^2$是梯度方差。</p>
+                        </div>
+
+                        <h3>最优编码设计</h3>
+                        <p>编码矩阵的选择影响系统性能，需要考虑：</p>
+                        
+                        <ul>
+                            <li><strong>数值稳定性</strong>: 解码矩阵的条件数</li>
+                            <li><strong>计算复杂度</strong>: 编码和解码的计算开销</li>
+                            <li><strong>存储开销</strong>: 编码数据的存储需求</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>实现细节</h2>
+                        
+                        <h3>基础梯度编码实现</h3>
+                        <pre><code>import numpy as np
+from scipy.linalg import solve
+import torch
+import torch.distributed as dist
+
+class GradientCoding:
+    def __init__(self, num_workers, num_data_partitions, field_size=2**8):
+        self.n = num_workers  # 总工作节点数
+        self.s = num_data_partitions  # 数据分区数
+        self.field_size = field_size
+        
+        # 生成范德蒙德编码矩阵
+        self.encoding_matrix = self._generate_vandermonde_matrix()
+        
+    def _generate_vandermonde_matrix(self):
+        """生成范德蒙德编码矩阵"""
+        # 选择不同的评估点
+        alphas = np.arange(1, self.n + 1) % self.field_size
+        
+        # 构造范德蒙德矩阵
+        matrix = np.zeros((self.n, self.s))
+        for i in range(self.n):
+            for j in range(self.s):
+                matrix[i, j] = (alphas[i] ** j) % self.field_size
+                
+        return matrix
+    
+    def encode_data(self, data_partitions):
+        """对数据分区进行编码"""
+        encoded_data = []
+        
+        for i in range(self.n):
+            # 线性组合数据分区
+            encoded_partition = np.zeros_like(data_partitions[0])
+            for j in range(self.s):
+                encoded_partition += self.encoding_matrix[i, j] * data_partitions[j]
+            encoded_data.append(encoded_partition)
+            
+        return encoded_data
+    
+    def decode_gradients(self, received_gradients, worker_indices):
+        """解码恢复原始梯度"""
+        assert len(received_gradients) >= self.s, "Not enough gradients received"
+        
+        # 选择前s个可用的梯度
+        selected_gradients = received_gradients[:self.s]
+        selected_indices = worker_indices[:self.s]
+        
+        # 构造解码矩阵
+        decode_matrix = self.encoding_matrix[selected_indices, :]
+        
+        # 解线性方程组
+        original_gradients = []
+        grad_shape = selected_gradients[0].shape
+        
+        # 对每个参数维度独立解码
+        flat_grads = [grad.flatten() for grad in selected_gradients]
+        
+        for dim in range(flat_grads[0].shape[0]):
+            # 提取当前维度的值
+            dim_values = np.array([grad[dim] for grad in flat_grads])
+            
+            # 解码
+            decoded_values = solve(decode_matrix, dim_values)
+            original_gradients.append(decoded_values)
+        
+        # 重构原始梯度形状
+        original_gradients = np.array(original_gradients).T
+        return [grad.reshape(grad_shape) for grad in original_gradients]
+
+class CodedDistributedSGD:
+    def __init__(self, model, data_partitions, learning_rate=0.01, 
+                 redundancy_factor=2):
+        self.model = model
+        self.lr = learning_rate
+        self.s = len(data_partitions)  # 数据分区数
+        self.n = self.s * redundancy_factor  # 总工作节点数
+        
+        # 初始化梯度编码
+        self.coding = GradientCoding(self.n, self.s)
+        
+        # 编码数据
+        self.encoded_data = self.coding.encode_data(data_partitions)
+        
+    def distributed_step(self, batch_idx):
+        """分布式训练步骤"""
+        # 模拟分布式计算
+        computed_gradients = []
+        worker_indices = []
+        
+        # 模拟部分节点完成计算（前s个节点）
+        for i in range(self.s):
+            # 在编码数据上计算梯度
+            data_batch = self.encoded_data[i][batch_idx]
+            
+            # 前向和反向传播
+            self.model.zero_grad()
+            output = self.model(data_batch['input'])
+            loss = torch.nn.functional.cross_entropy(output, data_batch['target'])
+            loss.backward()
+            
+            # 收集梯度
+            gradient = {}
+            for name, param in self.model.named_parameters():
+                if param.grad is not None:
+                    gradient[name] = param.grad.data.clone()
+                    
+            computed_gradients.append(gradient)
+            worker_indices.append(i)
+        
+        # 解码恢复原始梯度
+        decoded_gradients = self.coding.decode_gradients(
+            computed_gradients, worker_indices
+        )
+        
+        # 聚合梯度并更新模型
+        self._aggregate_and_update(decoded_gradients)
+    
+    def _aggregate_and_update(self, gradients_list):
+        """聚合梯度并更新模型参数"""
+        # 计算平均梯度
+        for name, param in self.model.named_parameters():
+            if param.grad is not None:
+                avg_grad = torch.stack([
+                    grad[name] for grad in gradients_list
+                ]).mean(dim=0)
+                
+                # 更新参数
+                param.data -= self.lr * avg_grad</code></pre>
+
+                        <h3>异步梯度编码</h3>
+                        <pre><code>class AsyncGradientCoding:
+    def __init__(self, model, coding_scheme, timeout=5.0):
+        self.model = model
+        self.coding = coding_scheme
+        self.timeout = timeout
+        self.pending_gradients = {}
+        
+    def async_compute_gradient(self, worker_id, data_batch):
+        """异步计算编码梯度"""
+        import threading
+        import time
+        
+        def compute_worker_gradient():
+            start_time = time.time()
+            
+            try:
+                # 计算梯度
+                self.model.zero_grad()
+                output = self.model(data_batch)
+                loss = self.compute_loss(output, data_batch)
+                loss.backward()
+                
+                # 收集梯度
+                gradient = {}
+                for name, param in self.model.named_parameters():
+                    if param.grad is not None:
+                        gradient[name] = param.grad.data.clone()
+                
+                # 记录计算时间
+                compute_time = time.time() - start_time
+                
+                # 存储结果
+                self.pending_gradients[worker_id] = {
+                    'gradient': gradient,
+                    'timestamp': time.time(),
+                    'compute_time': compute_time
+                }
+                
+            except Exception as e:
+                print(f"Worker {worker_id} failed: {e}")
+                self.pending_gradients[worker_id] = None
+        
+        # 启动异步计算
+        thread = threading.Thread(target=compute_worker_gradient)
+        thread.start()
+        return thread
+    
+    def wait_and_decode(self, required_workers=None):
+        """等待足够的工作节点完成并解码"""
+        if required_workers is None:
+            required_workers = self.coding.s
+            
+        start_time = time.time()
+        
+        while len(self.pending_gradients) < required_workers:
+            if time.time() - start_time > self.timeout:
+                print("Timeout waiting for workers")
+                break
+            time.sleep(0.1)  # 短暂等待
+        
+        # 选择最快完成的工作节点
+        completed_workers = [
+            (worker_id, result) 
+            for worker_id, result in self.pending_gradients.items()
+            if result is not None
+        ]
+        
+        # 按完成时间排序
+        completed_workers.sort(key=lambda x: x[1]['timestamp'])
+        
+        if len(completed_workers) >= required_workers:
+            # 解码梯度
+            selected_results = completed_workers[:required_workers]
+            gradients = [result['gradient'] for _, result in selected_results]
+            worker_ids = [worker_id for worker_id, _ in selected_results]
+            
+            # 使用编码方案解码
+            decoded_gradients = self.coding.decode_gradients(gradients, worker_ids)
+            
+            # 清理已使用的结果
+            self.pending_gradients.clear()
+            
+            return decoded_gradients
+        
+        else:
+            raise RuntimeError("Not enough workers completed in time")</code></pre>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>高级编码技术</h2>
+                        
+                        <h3>分层梯度编码</h3>
+                        <p>针对深度神经网络的分层结构，可以对不同层采用不同的编码策略：</p>
+                        
+                        <ul>
+                            <li><strong>敏感层</strong>: 使用更高的冗余度</li>
+                            <li><strong>稳定层</strong>: 使用较低的冗余度</li>
+                            <li><strong>自适应</strong>: 根据梯度方差调整编码参数</li>
+                        </ul>
+
+                        <h3>近似梯度编码</h3>
+                        <p>通过引入可控的近似误差来减少编码开销：</p>
+                        
+                        <div class="math-block">
+                            $$\|\hat{\mathbf{g}} - \mathbf{g}\|_2 \leq \epsilon \|\mathbf{g}\|_2$$
+                        </div>
+                        
+                        <p>其中 $\hat{\mathbf{g}}$ 是近似梯度，$\epsilon$ 是近似参数。</p>
+
+                        <h3>自适应编码</h3>
+                        <p>根据系统状态动态调整编码参数：</p>
+                        
+                        <pre><code>class AdaptiveCoding:
+    def __init__(self, base_coding, adaptation_window=100):
+        self.base_coding = base_coding
+        self.window = adaptation_window
+        self.performance_history = []
+        
+    def adapt_redundancy(self, current_performance):
+        """根据历史性能调整冗余度"""
+        self.performance_history.append(current_performance)
+        
+        if len(self.performance_history) > self.window:
+            self.performance_history.pop(0)
+        
+        # 计算平均延迟
+        avg_latency = np.mean([p['latency'] for p in self.performance_history])
+        failure_rate = np.mean([p['failures'] for p in self.performance_history])
+        
+        # 自适应调整
+        if failure_rate > 0.1:  # 高故障率
+            new_redundancy = min(self.base_coding.n + 2, self.base_coding.n * 1.5)
+        elif avg_latency > self.target_latency:  # 高延迟
+            new_redundancy = max(self.base_coding.n - 1, self.base_coding.s + 1)
+        else:
+            new_redundancy = self.base_coding.n  # 保持现状
+            
+        return int(new_redundancy)</code></pre>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>实验评估</h2>
+                        
+                        <h3>实验设置</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>场景</th>
+                                    <th>数据集</th>
+                                    <th>模型</th>
+                                    <th>节点数(n,s)</th>
+                                    <th>拖尾比例</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>图像分类</td>
+                                    <td>CIFAR-10</td>
+                                    <td>ResNet-18</td>
+                                    <td>(12,8)</td>
+                                    <td>25%</td>
+                                </tr>
+                                <tr>
+                                    <td>语言模型</td>
+                                    <td>WikiText-2</td>
+                                    <td>LSTM</td>
+                                    <td>(15,10)</td>
+                                    <td>33%</td>
+                                </tr>
+                                <tr>
+                                    <td>推荐系统</td>
+                                    <td>MovieLens</td>
+                                    <td>Matrix Factorization</td>
+                                    <td>(20,15)</td>
+                                    <td>30%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>性能对比</h3>
+                        <div class="performance-metrics">
+                            <div class="metric">
+                                <h4>训练时间 (CIFAR-10)</h4>
+                                <ul>
+                                    <li>无编码: 450s (基准)</li>
+                                    <li>梯度编码: 320s (29%提升)</li>
+                                    <li>复制方法: 380s (16%提升)</li>
+                                </ul>
+                            </div>
+                            <div class="metric">
+                                <h4>通信开销</h4>
+                                <ul>
+                                    <li>数据分发: +50%</li>
+                                    <li>梯度传输: -20%</li>
+                                    <li>总开销: +15%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>拖尾节点影响分析</h3>
+                        <p>在不同拖尾比例下的系统性能：</p>
+                        
+                        <ul>
+                            <li><strong>10%拖尾</strong>: 梯度编码提升15%</li>
+                            <li><strong>25%拖尾</strong>: 梯度编码提升35%</li>
+                            <li><strong>40%拖尾</strong>: 梯度编码提升55%</li>
+                        </ul>
+
+                        <p>结果表明，拖尾节点比例越高，梯度编码的优势越明显。</p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>扩展应用</h2>
+                        
+                        <h3>联邦学习中的应用</h3>
+                        <p>在联邦学习场景中，梯度编码可以应对：</p>
+                        
+                        <ul>
+                            <li><strong>设备掉线</strong>: 移动设备的不可靠连接</li>
+                            <li><strong>异构性</strong>: 不同设备的计算能力差异</li>
+                            <li><strong>隐私保护</strong>: 编码提供额外的隐私保护</li>
+                        </ul>
+
+                        <h3>边缘计算集成</h3>
+                        <p>在边缘计算环境中的优势：</p>
+                        
+                        <ul>
+                            <li><strong>网络容错</strong>: 应对不稳定的网络连接</li>
+                            <li><strong>资源优化</strong>: 充分利用边缘节点资源</li>
+                            <li><strong>延迟降低</strong>: 减少等待时间</li>
+                        </ul>
+
+                        <h3>与其他技术结合</h3>
+                        <ul>
+                            <li><strong>梯度压缩</strong>: 编码+压缩的双重优化</li>
+                            <li><strong>异步更新</strong>: 编码+异步的混合策略</li>
+                            <li><strong>自适应学习率</strong>: 根据编码状态调整学习率</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>挑战与未来方向</h2>
+                        
+                        <h3>当前挑战</h3>
+                        <ul>
+                            <li><strong>计算开销</strong>: 编码和解码的额外计算成本</li>
+                            <li><strong>存储需求</strong>: 冗余数据的存储开销</li>
+                            <li><strong>数值稳定性</strong>: 编码矩阵的条件数问题</li>
+                            <li><strong>动态适应</strong>: 根据系统状态实时调整编码策略</li>
+                        </ul>
+
+                        <h3>未来研究方向</h3>
+                        <ul>
+                            <li><strong>智能编码</strong>: 基于机器学习的编码策略优化</li>
+                            <li><strong>多层次编码</strong>: 结合数据、模型、通信的分层编码</li>
+                            <li><strong>量子编码</strong>: 探索量子计算在编码中的应用</li>
+                            <li><strong>绿色编码</strong>: 考虑能耗的编码方案设计</li>
+                        </ul>
+
+                        <h3>理论深化</h3>
+                        <ul>
+                            <li><strong>最优性理论</strong>: 编码方案的理论下界</li>
+                            <li><strong>收敛性分析</strong>: 非凸情况下的收敛保证</li>
+                            <li><strong>鲁棒性研究</strong>: 对抗性环境下的编码设计</li>
+                        </ul>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>总结</h2>
+                        
+                        <p>梯度编码技术为分布式机器学习中的拖尾节点问题提供了优雅的解决方案。通过借鉴编码理论的思想，它在保持收敛性的同时显著提升了系统的容错能力和效率。</p>
+
+                        <h3>核心贡献</h3>
+                        <ul>
+                            <li><strong>理论基础</strong>: 建立了编码理论与分布式优化的桥梁</li>
+                            <li><strong>实用性</strong>: 在多种机器学习任务中验证了有效性</li>
+                            <li><strong>扩展性</strong>: 提供了多种变体和优化策略</li>
+                        </ul>
+
+                        <h3>应用前景</h3>
+                        <p>随着分布式机器学习规模的不断扩大，梯度编码技术将在以下领域发挥重要作用：</p>
+                        
+                        <ul>
+                            <li><strong>大模型训练</strong>: 支持超大规模模型的分布式训练</li>
+                            <li><strong>联邦学习</strong>: 提高分布式协作学习的鲁棒性</li>
+                            <li><strong>边缘智能</strong>: 实现高效的边缘协同计算</li>
+                        </ul>
+                        
+                        <p>梯度编码不仅是一种技术创新，更代表了分布式系统设计的新思路：通过系统性冗余来换取更好的性能和可靠性。</p>
+                    </section>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3>目录</h3>
+                        <ul class="toc">
+                            <li><a href="#intro">引言动机</a></li>
+                            <li><a href="#principle">基本原理</a></li>
+                            <li><a href="#theory">理论分析</a></li>
+                            <li><a href="#implementation">实现细节</a></li>
+                            <li><a href="#advanced">高级技术</a></li>
+                            <li><a href="#experiments">实验评估</a></li>
+                            <li><a href="#applications">扩展应用</a></li>
+                            <li><a href="#challenges">挑战方向</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>相关技术</h3>
+                        <div class="tags">
+                            <span class="tag">梯度编码</span>
+                            <span class="tag">编码理论</span>
+                            <span class="tag">容错计算</span>
+                            <span class="tag">拖尾节点</span>
+                            <span class="tag">MDS码</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>其他博客</h3>
+                        <ul class="related-posts">
+                            <li><a href="blog-sparsification.html">梯度稀疏化方法</a></li>
+                            <li><a href="blog-distributed-sgd.html">分布式梯度下降</a></li>
+                            <li><a href="blog-fastest-k.html">Fastest-k SGD算法</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // MathJax配置
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="../js/detail-script.js"></script>
+</body>
+</html>

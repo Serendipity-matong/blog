@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目详情 - 教室白板识别</title>
+    <link rel="stylesheet" href="../css/detail-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="project-theme">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回主页</span>
+            </a>
+            <div class="nav-type">
+                <i class="fas fa-folder-open"></i>
+                <span>个人项目</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="detail-container">
+        <!-- 项目标题区域 -->
+        <div class="detail-header">
+            <div class="header-content">
+                <div class="project-badge">
+                    <i class="fas fa-chalkboard"></i>
+                    <span>AI识别</span>
+                </div>
+                <h1 class="detail-title">教室白板识别</h1>
+                <p class="detail-subtitle">基于计算机视觉的智能教室管理系统，自动识别白板使用状态，助力节能减排</p>
+                <div class="detail-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-fire"></i>
+                        <span>1M+ 用户</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-award"></i>
+                        <span>热门项目</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>2024.09</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link primary">
+                        <i class="fas fa-desktop"></i>
+                        <span>体验系统</span>
+                    </a>
+                    <a href="#" class="project-link secondary">
+                        <i class="fab fa-github"></i>
+                        <span>开源代码</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目详情内容 -->
+        <div class="detail-content">
+            <div class="content-grid">
+                <!-- 主要内容 -->
+                <div class="main-content">
+                    <!-- 项目概述 -->
+                    <section class="detail-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-info-circle"></i>
+                            项目背景
+                        </h2>
+                        <div class="section-content">
+                            <p>在现代化的教室中，投影仪和电子白板设备通常保持长时间开启状态，即使在无人使用的情况下也在持续耗电。这种现象不仅造成了巨大的能源浪费，也增加了学校的运营成本。</p>
+                            
+                            <p>教室白板识别系统通过部署在教室内的摄像头，实时监测白板的使用状态。当检测到白板长时间无人使用时，系统会自动控制相关设备进入休眠状态，从而实现智能节能管理。</p>
+                            
+                            <h3>解决方案</h3>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check-circle"></i> 实时视频分析：7x24小时监控白板使用状态</li>
+                                <li><i class="fas fa-check-circle"></i> 智能设备控制：自动管理投影仪、灯光等设备</li>
+                                <li><i class="fas fa-check-circle"></i> 节能统计报告：详细的能耗分析和节能效果报告</li>
+                                <li><i class="fas fa-check-circle"></i> 远程监控管理：支持管理员远程查看和控制</li>
+                                <li><i class="fas fa-check-circle"></i> 设备兼容性强：支持各种品牌的教室设备</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 技术实现 -->
+                    <section class="detail-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-brain"></i>
+                            AI算法
+                        </h2>
+                        <div class="section-content">
+                            <h3>视觉识别技术</h3>
+                            <p>系统采用YOLOv8目标检测算法，结合OpenPose人体姿态识别技术，能够准确识别教师和学生的活动状态。</p>
+                            
+                            <h3>行为分析引擎</h3>
+                            <p>通过分析人员在白板附近的停留时间、手势动作等行为特征，判断是否正在进行教学活动。</p>
+                            
+                            <h3>智能控制逻辑</h3>
+                            <p>建立多层决策机制，避免误判导致的设备频繁开关，确保教学活动不受影响的同时实现最大化节能。</p>
+                            
+                            <div class="tech-stack">
+                                <h3>技术栈</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">OpenCV</span>
+                                    <span class="tech-tag">YOLOv8</span>
+                                    <span class="tech-tag">OpenPose</span>
+                                    <span class="tech-tag">Flask</span>
+                                    <span class="tech-tag">MQTT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 应用效果 -->
+                    <section class="detail-section">
+                        <h2 class="section-title">
+                            <i class="fas fa-leaf"></i>
+                            节能效果
+                        </h2>
+                        <div class="section-content">
+                            <div class="performance-grid">
+                                <div class="performance-card">
+                                    <div class="perf-number">40%</div>
+                                    <div class="perf-label">节能比例</div>
+                                </div>
+                                <div class="performance-card">
+                                    <div class="perf-number">92%</div>
+                                    <div class="perf-label">识别准确率</div>
+                                </div>
+                                <div class="performance-card">
+                                    <div class="perf-number">500+</div>
+                                    <div class="perf-label">部署教室</div>
+                                </div>
+                                <div class="performance-card">
+                                    <div class="perf-number">50万</div>
+                                    <div class="perf-label">年节约电费(元)</div>
+                                </div>
+                            </div>
+                            
+                            <h3>实际案例</h3>
+                            <p>在某高校试点部署后，该系统在一学期内为100间教室节约了约30%的电力消耗，相当于减少二氧化碳排放15吨，获得了师生和校方的一致认可。</p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">项目信息</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">状态</span>
+                                <span class="info-value active">大规模部署</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">类型</span>
+                                <span class="info-value">AI视觉识别</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">开源</span>
+                                <span class="info-value">MIT License</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">版本</span>
+                                <span class="info-value">v3.1.2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">相关项目</h3>
+                        <div class="related-projects">
+                            <a href="project-weather-prediction.html" class="related-item">
+                                <i class="fas fa-cloud-rain"></i>
+                                <span>航空降雨预测</span>
+                            </a>
+                            <a href="project-coding-ai.html" class="related-item">
+                                <i class="fas fa-code"></i>
+                                <span>coding ai纠错平台</span>
+                            </a>
+                            <a href="project-detail.html" class="related-item">
+                                <i class="fas fa-microchip"></i>
+                                <span>Ascend C 算子融合</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">部署统计</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span class="info-label">合作学校</span>
+                                <span class="info-value">50+所</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">部署教室</span>
+                                <span class="info-value">500+间</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">服务师生</span>
+                                <span class="info-value">10万+人</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 idealclover. Made with ❤️</p>
+        </div>
+    </footer>
+
+    <script src="../js/detail-script.js"></script>
+</body>
+</html>
