@@ -1,43 +1,40 @@
 // 文章数据
 const articlesData = {
     '最新': [
-        { title: '技术与生活的平衡艺术', date: '2024.12.01', category: '随想', url: 'blog-tech-life-balance.html' },
-        { title: 'React 18新特性深度解析：并发特性与性能优化', date: '2024.12.15', category: '技术', url: 'blog-react.html' },
-        { title: 'Astro：下一代静态站点生成器的革命性创新', date: '2024.11.28', category: '技术', url: 'blog-astro.html' },
-        { title: '学习之路：从迷茫到清晰的成长轨迹', date: '2024.11.15', category: '随想', url: 'blog-learning-journey.html' },
-        { title: 'TailwindCSS实战指南：原子化CSS的现代化应用', date: '2024.10.22', category: '技术', url: 'blog-tailwind.html' },
-        { title: '开源精神：协作与共享的力量', date: '2024.10.28', category: '随想', url: 'blog-open-source.html' },
-        { title: '微服务架构设计与实践：从单体到分布式的演进之路', date: '2024.09.18', category: '技术', url: 'blog-microservices.html' },
-        { title: 'DDOS攻击防护策略：构建弹性网络安全防线', date: '2024.08.14', category: '技术', url: 'blog-ddos.html' }
+        { title: '技术与生活的平衡艺术', date: '2025.09.10', category: '随想', url: 'blog-tech-life-balance.html' },
+        { title: 'React 18新特性深度解析：并发特性与性能优化', date: '2025.09.12', category: '技术', url: 'blog-react.html' },
+        { title: 'Astro：下一代静态站点生成器的革命性创新', date: '2025.09.08', category: '技术', url: 'blog-astro.html' },
+        { title: '学习之路：从迷茫到清晰的成长轨迹', date: '2025.09.06', category: '随想', url: 'blog-learning-journey.html' },
+        { title: 'TailwindCSS实战指南：原子化CSS的现代化应用', date: '2025.09.05', category: '技术', url: 'blog-tailwind.html' }
     ],
     '技术': [
-        { title: 'React 18新特性深度解析：并发特性与性能优化', date: '2024.12.15', category: '技术', url: 'blog-react.html' },
-        { title: 'Astro：下一代静态站点生成器的革命性创新', date: '2024.11.28', category: '技术', url: 'blog-astro.html' },
-        { title: 'TailwindCSS实战指南：原子化CSS的现代化应用', date: '2024.10.22', category: '技术', url: 'blog-tailwind.html' },
-        { title: '微服务架构设计与实践：从单体到分布式的演进之路', date: '2024.09.18', category: '技术', url: 'blog-microservices.html' },
-        { title: 'DDOS攻击防护策略：构建弹性网络安全防线', date: '2024.08.14', category: '技术', url: 'blog-ddos.html' }
+        { title: 'React 18新特性深度解析：并发特性与性能优化', date: '2025.09.12', category: '技术', url: 'blog-react.html' },
+        { title: 'Astro：下一代静态站点生成器的革命性创新', date: '2025.09.08', category: '技术', url: 'blog-astro.html' },
+        { title: 'TailwindCSS实战指南：原子化CSS的现代化应用', date: '2025.09.05', category: '技术', url: 'blog-tailwind.html' },
+        { title: '微服务架构设计与实践：从单体到分布式的演进之路', date: '2025.09.04', category: '技术', url: 'blog-microservices.html' },
+        { title: 'DDOS攻击防护策略：构建弹性网络安全防线', date: '2025.09.01', category: '技术', url: 'blog-ddos.html' }
     ],
     '学术': [
-        { title: '梯度稀疏化方法：Top-k与Rand-k算法的理论与实践', date: '2024.07.25', category: '学术', url: 'blog-sparsification.html' },
-        { title: '分布式梯度下降算法：从同步到异步的优化策略', date: '2024.06.12', category: '学术', url: 'blog-distributed-sgd.html' },
-        { title: '梯度编码技术：分布式学习中的容错机制', date: '2024.05.08', category: '学术', url: 'blog-gradient-coding.html' },
-        { title: 'Fastest-k SGD：基于动态选择的高效分布式优化算法', date: '2024.04.15', category: '学术', url: 'blog-fastest-k.html' },
-        { title: 'Adaptive Fastest-k SGD：智能参数调优的分布式学习算法', date: '2024.03.22', category: '学术', url: 'blog-adaptive-fastest-k.html' }
+        { title: '梯度稀疏化方法：Top-k与Rand-k算法的理论与实践', date: '2025.09.03', category: '学术', url: 'blog-sparsification.html' },
+        { title: '分布式梯度下降算法：从同步到异步的优化策略', date: '2025.09.02', category: '学术', url: 'blog-distributed-sgd.html' },
+        { title: '梯度编码技术：分布式学习中的容错机制', date: '2025.09.04', category: '学术', url: 'blog-gradient-coding.html' },
+        { title: 'Fastest-k SGD：基于动态选择的高效分布式优化算法', date: '2025.09.07', category: '学术', url: 'blog-fastest-k.html' },
+        { title: 'Adaptive Fastest-k SGD：智能参数调优的分布式学习算法', date: '2025.09.09', category: '学术', url: 'blog-adaptive-fastest-k.html' }
     ],
     '随想': [
-        { title: '技术与生活的平衡艺术', date: '2024.12.01', category: '随想', url: 'blog-tech-life-balance.html' },
-        { title: '学习之路：从迷茫到清晰的成长轨迹', date: '2024.11.15', category: '随想', url: 'blog-learning-journey.html' },
-        { title: '开源精神：协作与共享的力量', date: '2024.10.28', category: '随想', url: 'blog-open-source.html' },
-        { title: '失败是成功的垫脚石', date: '2024.09.10', category: '随想', url: 'blog-failure-success.html' },
-        { title: '未来技术的畅想', date: '2024.08.22', category: '随想', url: 'blog-future-tech.html' },
-        { title: '阅读的力量', date: '2024.07.18', category: '随想', url: 'blog-reading-thoughts.html' }
+        { title: '技术与生活的平衡艺术', date: '2025.09.10', category: '随想', url: 'blog-tech-life-balance.html' },
+        { title: '学习之路：从迷茫到清晰的成长轨迹', date: '2025.09.06', category: '随想', url: 'blog-learning-journey.html' },
+        { title: '开源精神：协作与共享的力量', date: '2025.09.07', category: '随想', url: 'blog-open-source.html' },
+        { title: '失败是成功的垫脚石', date: '2025.09.03', category: '随想', url: 'blog-failure-success.html' },
+        { title: '未来技术的畅想', date: '2025.09.02', category: '随想', url: 'blog-future-tech.html' },
+        { title: '阅读的力量', date: '2025.09.02', category: '随想', url: 'blog-reading-thoughts.html' }
     ],
     '旅游': [
-        { title: '云南：多彩秘境的寻梦之旅', date: '2024.06.15', category: '旅游', url: 'blog-yunnan-travel.html' },
-        { title: '武汉：江城百年风华', date: '2024.05.20', category: '旅游', url: 'travel-wuhan.html' },
-        { title: '海南：椰风海韵的热带天堂', date: '2024.04.28', category: '旅游', url: 'travel-hainan.html' },
-        { title: '桂林：山水甲天下的诗意之旅', date: '2024.04.10', category: '旅游', url: 'travel-detail.html' },
-        { title: '贵州：多彩喀斯特的自然奇观', date: '2024.03.15', category: '旅游', url: 'travel-guizhou.html' }
+        { title: '云南：多彩秘境的寻梦之旅', date: '2025.09.01', category: '旅游', url: 'blog-yunnan-travel.html' },
+        { title: '武汉：江城百年风华', date: '2025.09.05', category: '旅游', url: 'travel-wuhan.html' },
+        { title: '海南：椰风海韵的热带天堂', date: '2025.09.06', category: '旅游', url: 'travel-hainan.html' },
+        { title: '桂林：山水甲天下的诗意之旅', date: '2025.09.08', category: '旅游', url: 'travel-detail.html' },
+        { title: '贵州：多彩喀斯特的自然奇观', date: '2025.09.10', category: '旅游', url: 'travel-guizhou.html' }
     ]
 };
 
@@ -51,24 +48,28 @@ const socialLinks = {
 
 // DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
+    initializeBlogSystem(); // 先初始化博客系统
     initializeInteractions();
     initializeAnimations();
     initializeSocialLinks();
     initializeKeyboardNavigation();
     initializePerformanceMonitoring();
     initializeNewSections();
-    initializeBlogSystem();
 });
 
 /**
  * 初始化博客系统
  */
 function initializeBlogSystem() {
+    console.log('初始化博客系统...');
     // 确保默认显示"最新"分类的文章
     const activeButton = document.querySelector('.category-btn.active');
     if (activeButton) {
-        // 不需要调用updateArticlesList，因为HTML中已经有文章了
-        // 只有在用户点击其他分类时才需要更新
+        console.log('找到活跃按钮，加载最新文章...');
+        // 页面加载时自动显示"最新"分类文章
+        updateArticlesList('最新');
+    } else {
+        console.log('未找到活跃按钮');
     }
 }
 
@@ -121,8 +122,10 @@ function handleCategoryClick(button) {
  * 更新文章列表
  */
 function updateArticlesList(category) {
+    console.log(`更新文章列表 - 分类: ${category}`);
     const articlesList = document.querySelector('.articles-list');
     const articles = articlesData[category] || articlesData['最新'];
+    console.log(`找到 ${articles.length} 篇文章`);
     
     // 淡出效果
     articlesList.style.opacity = '0';
@@ -165,7 +168,8 @@ function updateArticlesList(category) {
  */
 function createArticleElement(article) {
     const articleElement = document.createElement('a');
-    articleElement.href = article.url;
+    // 修复路径问题 - 添加 ../blog/ 前缀
+    articleElement.href = `../blog/${article.url}`;
     articleElement.className = 'article-item clickable';
     articleElement.innerHTML = `
         <h3 class="article-title">${article.title}</h3>

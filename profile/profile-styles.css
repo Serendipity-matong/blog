@@ -108,7 +108,7 @@ body {
     z-index: 100;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-    background: rgba(39, 39, 39, 0.3); /* 添加半透明背景，与右侧卡片背景保持一致 */
+    background: #1b1b1b; /* 与body背景保持一致 */
     backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
     border-radius: 20px; /* 添加圆角使其更加美观 */
     margin: 20px 0; /* 添加上下边距 */
@@ -529,7 +529,7 @@ body {
         overflow-y: visible;
         grid-area: profile;
         align-items: center; /* 水平方向居中 */
-        background: rgba(39, 39, 39, 0.3); /* 保持背景一致性 */
+        background: #1b1b1b; /* 与body背景保持一致 */
         backdrop-filter: blur(10px); /* 保持毛玻璃效果 */
         border-radius: 20px; /* 保持圆角 */
         padding: 20px; /* 添加内边距 */
@@ -561,7 +561,7 @@ body {
         text-align: center;
         align-items: center;
         order: -1; /* 确保头像区域始终在最上方 */
-        background: rgba(39, 39, 39, 0.3); /* 保持背景一致性 */
+        background: #1b1b1b; /* 与body背景保持一致 */
         backdrop-filter: blur(10px); /* 保持毛玻璃效果 */
         border-radius: 16px; /* 移动端稍小的圆角 */
         padding: 20px; /* 添加内边距 */
@@ -1486,11 +1486,12 @@ a.exhibition-card:hover {
 .platform-name {
     font-size: 1.1rem;
     font-weight: 600;
+    color: #ffffff !important; /* 纯白色字体 */
 }
 
 .platform-followers {
     font-size: 0.9rem;
-    color: #888;
+    color: #ffffff !important; /* 纯白色字体 */
 }
 
 /* 联系方式区域样式 */

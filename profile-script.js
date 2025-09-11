@@ -1,28 +1,28 @@
 // 文章数据
 const articlesData = {
     '最新': [
-        { title: '再赴一场盛夏：写给下一个五年', date: '2025.08.31', category: '随想' },
-        { title: '技术成长路径：从初级到高级开发者', date: '2025.08.28', category: '技术' },
-        { title: '产品思维：如何设计用户喜爱的功能', date: '2025.08.25', category: '技术' },
-        { title: '生活随笔：在快节奏中寻找内心平静', date: '2025.08.22', category: '生活' },
+        { title: '再赴一场盛夏：写给下一个五年', date: '2025.09.11', category: '随想' },
+        { title: '技术成长路径：从初级到高级开发者', date: '2025.09.11', category: '技术' },
+        { title: '产品思维：如何设计用户喜爱的功能', date: '2025.09.12', category: '技术' },
+        { title: '生活随笔：在快节奏中寻找内心平静', date: '2025.09.08', category: '生活' },
         { title: 'MacBook Pro M3 深度体验：创作者的新选择', date: '2025.08.19', category: '测评' }
     ],
     '技术': [
-        { title: '技术成长路径：从初级到高级开发者', date: '2025.08.28', category: '技术' },
-        { title: '产品思维：如何设计用户喜爱的功能', date: '2025.08.25', category: '技术' },
+        { title: '技术成长路径：从初级到高级开发者', date: '2025.09.11', category: '技术' },
+        { title: '产品思维：如何设计用户喜爱的功能', date: '2025.09.12', category: '技术' },
         { title: 'React 18 新特性详解与实践指南', date: '2025.08.15', category: '技术' },
         { title: 'TypeScript 最佳实践：类型安全的代码之路', date: '2025.08.10', category: '技术' },
         { title: '微服务架构设计模式与实现', date: '2025.08.05', category: '技术' }
     ],
     '生活': [
-        { title: '生活随笔：在快节奏中寻找内心平静', date: '2025.08.22', category: '生活' },
+        { title: '生活随笔：在快节奏中寻找内心平静', date: '2025.09.08', category: '生活' },
         { title: '咖啡文化探索：从豆子到杯子的旅程', date: '2025.08.12', category: '生活' },
         { title: '摄影日记：捕捉城市中的光影瞬间', date: '2025.08.08', category: '生活' },
         { title: '旅行手记：漫步京都的春天', date: '2025.07.30', category: '生活' },
         { title: '读书笔记：《人类简史》的思考', date: '2025.07.25', category: '生活' }
     ],
     '随想': [
-        { title: '再赴一场盛夏：写给下一个五年', date: '2025.08.31', category: '随想' },
+        { title: '再赴一场盛夏：写给下一个五年', date: '2025.09.11', category: '随想' },
         { title: '关于时间管理的一些思考', date: '2025.08.18', category: '随想' },
         { title: '数字化时代的人际关系', date: '2025.08.14', category: '随想' },
         { title: '创作的意义：为什么要坚持写作', date: '2025.08.06', category: '随想' },

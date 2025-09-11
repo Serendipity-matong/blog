@@ -1,3 +1,157 @@
+// 文章数据
+const articlesData = {
+    '最新': [
+        { title: 'React 18新特性深度解析：并发特性与性能优化', date: '2025.09.12', category: '技术', url: 'blog-react.html' },
+        { title: '技术与生活的平衡艺术', date: '2025.09.10', category: '随想', url: 'blog-tech-life-balance.html' },
+        { title: 'Astro：下一代静态站点生成器的革命性创新', date: '2025.09.08', category: '技术', url: 'blog-astro.html' },
+        { title: '学习之路：从迷茫到清晰的成长轨迹', date: '2025.09.06', category: '随想', url: 'blog-learning-journey.html' },
+        { title: '微服务架构设计与实践：从单体到分布式的演进之路', date: '2025.09.04', category: '技术', url: 'blog-microservices.html' }
+    ],
+    '技术': [
+        { title: 'React 18新特性深度解析：并发特性与性能优化', date: '2025.09.12', category: '技术', url: 'blog-react.html' },
+        { title: 'Astro：下一代静态站点生成器的革命性创新', date: '2025.09.08', category: '技术', url: 'blog-astro.html' },
+        { title: 'TailwindCSS实战指南：原子化CSS的现代化应用', date: '2025.09.05', category: '技术', url: 'blog-tailwind.html' },
+        { title: '微服务架构设计与实践：从单体到分布式的演进之路', date: '2025.09.04', category: '技术', url: 'blog-microservices.html' },
+        { title: 'DDOS攻击防护策略：构建弹性网络安全防线', date: '2025.09.01', category: '技术', url: 'blog-ddos.html' }
+    ],
+    '学术': [
+        { title: '梯度稀疏化方法：Top-k与Rand-k算法的理论与实践', date: '2025.09.03', category: '学术', url: 'blog-sparsification.html' },
+        { title: '分布式梯度下降算法：从同步到异步的优化策略', date: '2025.09.02', category: '学术', url: 'blog-distributed-sgd.html' },
+        { title: '梯度编码技术：分布式学习中的容错机制', date: '2025.09.04', category: '学术', url: 'blog-gradient-coding.html' },
+        { title: 'Fastest-k SGD：基于动态选择的高效分布式优化算法', date: '2025.09.07', category: '学术', url: 'blog-fastest-k.html' },
+        { title: 'Adaptive Fastest-k SGD：智能参数调优的分布式学习算法', date: '2025.09.09', category: '学术', url: 'blog-adaptive-fastest-k.html' }
+    ],
+    '随想': [
+        { title: '技术与生活的平衡艺术', date: '2025.09.10', category: '随想', url: 'blog-tech-life-balance.html' },
+        { title: '学习之路：从迷茫到清晰的成长轨迹', date: '2025.09.06', category: '随想', url: 'blog-learning-journey.html' },
+        { title: '开源精神：协作与共享的力量', date: '2025.09.07', category: '随想', url: 'blog-open-source.html' },
+        { title: '失败是成功的垫脚石', date: '2025.09.03', category: '随想', url: 'blog-failure-success.html' },
+        { title: '未来技术的畅想', date: '2025.09.02', category: '随想', url: 'blog-future-tech.html' }
+    ],
+    '旅游': [
+        { title: '云南：多彩秘境的寻梦之旅', date: '2025.09.01', category: '旅游', url: 'blog-yunnan-travel.html' },
+        { title: '武汉：江城百年风华', date: '2025.09.05', category: '旅游', url: 'travel-wuhan.html' },
+        { title: '海南：椰风海韵的热带天堂', date: '2025.09.06', category: '旅游', url: 'travel-hainan.html' },
+        { title: '桂林：山水甲天下的诗意之旅', date: '2025.09.08', category: '旅游', url: 'travel-detail.html' },
+        { title: '贵州：多彩喀斯特的自然奇观', date: '2025.09.10', category: '旅游', url: 'travel-guizhou.html' }
+    ]
+};
+
+/**
+ * 初始化博客分类切换功能
+ */
+function initializeBlogCategories() {
+    console.log('初始化博客分类切换功能...');
+    
+    // 绑定分类按钮事件
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    console.log(`找到 ${categoryButtons.length} 个分类按钮`);
+    
+    if (categoryButtons.length === 0) {
+        console.error('未找到任何分类按钮！');
+        return;
+    }
+    
+    categoryButtons.forEach((btn, index) => {
+        console.log(`绑定按钮 ${index}: ${btn.textContent}`);
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log(`按钮被点击: ${this.textContent}`);
+            handleCategoryClick(this);
+        });
+        
+        // 添加测试样式
+        btn.style.cursor = 'pointer';
+    });
+    
+    console.log('博客分类切换功能初始化完成');
+}
+
+/**
+ * 处理分类按钮点击
+ */
+function handleCategoryClick(button) {
+    const category = button.textContent;
+    console.log(`点击分类: ${category}`);
+    
+    // 更新按钮状态
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    button.classList.add('active');
+    
+    // 添加点击动画
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = '';
+    }, 80);
+    
+    // 更新文章列表
+    updateArticlesList(category);
+}
+
+/**
+ * 更新文章列表
+ */
+function updateArticlesList(category) {
+    console.log(`更新文章列表 - 分类: ${category}`);
+    const articlesList = document.querySelector('.articles-list');
+    const articles = articlesData[category] || articlesData['最新'];
+    console.log(`找到 ${articles.length} 篇文章`);
+    
+    if (!articlesList) {
+        console.error('未找到文章列表容器');
+        return;
+    }
+    
+    // 淡出效果
+    articlesList.style.opacity = '0';
+    articlesList.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        // 清空现有文章
+        articlesList.innerHTML = '';
+        
+        // 添加新文章
+        articles.forEach((article, index) => {
+            const articleElement = createArticleElement(article);
+            articleElement.style.opacity = '0';
+            articleElement.style.transform = 'translateY(10px)';
+            articlesList.appendChild(articleElement);
+            
+            // 延迟显示动画
+            setTimeout(() => {
+                articleElement.style.transition = 'all 0.2s ease';
+                articleElement.style.opacity = '1';
+                articleElement.style.transform = 'translateY(0)';
+            }, index * 30);
+        });
+        
+        // 淡入容器
+        setTimeout(() => {
+            articlesList.style.transition = 'all 0.2s ease';
+            articlesList.style.opacity = '1';
+            articlesList.style.transform = 'translateY(0)';
+        }, 100);
+        
+    }, 150);
+}
+
+/**
+ * 创建文章元素
+ */
+function createArticleElement(article) {
+    const articleElement = document.createElement('a');
+    articleElement.href = `../blog/${article.url}`;
+    articleElement.className = 'article-item clickable';
+    articleElement.innerHTML = `
+        <h3 class="article-title">${article.title}</h3>
+        <time class="article-date">${article.date}</time>
+    `;
+    
+    return articleElement;
+}
+
 // DOM加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化主题
@@ -5,6 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 绑定主题切换按钮
     setupThemeToggle();
+    
+    // 初始化博客分类切换
+    setTimeout(() => {
+        initializeBlogCategories();
+    }, 100);
     
     // 初始化滚动动画
     initializeScrollAnimations();
@@ -482,8 +641,63 @@ function initializeVideoPlayer() {
     
     if (!video) return;
     
-    // 设置初始音量
-    video.volume = 0.5;
+    // 设置初始音量（由于autoplay muted，先设为0，用户点击后恢复）
+    video.volume = 0;
+    
+    // 尝试自动播放，如果失败则等待用户交互
+    const tryAutoplay = async () => {
+        try {
+            await video.play();
+            if (playPauseBtn) {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+        } catch (error) {
+            console.log('自动播放被阻止，等待用户交互', error);
+            // 添加点击视频播放的功能
+            video.addEventListener('click', function() {
+                if (video.paused) {
+                    video.play();
+                    video.muted = false; // 用户点击时取消静音
+                    video.volume = 0.5;
+                    if (volumeSlider) volumeSlider.value = 50;
+                    updateVolumeIcon();
+                }
+            });
+            
+            // 添加视频区域点击提示
+            const playHint = document.createElement('div');
+            playHint.className = 'play-hint';
+            playHint.innerHTML = '<i class="fas fa-play-circle"></i><span>点击播放视频</span>';
+            playHint.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: rgba(255, 255, 255, 0.8);
+                text-align: center;
+                z-index: 3;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            `;
+            playHint.querySelector('i').style.cssText = `
+                font-size: 3rem;
+                display: block;
+                margin-bottom: 10px;
+            `;
+            video.parentNode.appendChild(playHint);
+            
+            // 视频开始播放时隐藏提示
+            video.addEventListener('play', function() {
+                if (playHint) {
+                    playHint.style.opacity = '0';
+                    setTimeout(() => playHint.remove(), 300);
+                }
+            });
+        }
+    };
+    
+    // 页面加载后尝试自动播放
+    setTimeout(tryAutoplay, 100);
     
     // 播放/暂停功能
     if (playPauseBtn) {
@@ -548,19 +762,21 @@ function initializeVideoPlayer() {
             updateVolumeIcon();
         });
         
-        // 初始化音量显示
-        volumeSlider.value = video.volume * 100;
+        // 初始化音量显示（自动播放时为0）
+        volumeSlider.value = 0;
         updateVolumeIcon();
     }
     
-    // 音量按钮点击静音
+    // 音量按钮点击取消静音（由于自动播放需要静音）
     if (volumeBtn) {
         volumeBtn.addEventListener('click', function() {
             if (video.volume > 0) {
                 video.volume = 0;
+                video.muted = true;
                 if (volumeSlider) volumeSlider.value = 0;
             } else {
                 video.volume = 0.5;
+                video.muted = false; // 取消静音
                 if (volumeSlider) volumeSlider.value = 50;
             }
             updateVolumeIcon();
@@ -631,7 +847,7 @@ function initializeVideoPlayer() {
         const volume = video.volume;
         let iconClass = 'fas fa-volume-up';
         
-        if (volume === 0) {
+        if (video.muted || volume === 0) {
             iconClass = 'fas fa-volume-mute';
         } else if (volume < 0.5) {
             iconClass = 'fas fa-volume-down';

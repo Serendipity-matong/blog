@@ -8,7 +8,7 @@
 }
 
 .social-card .platform-name {
-    color: white !important;
+    color: #ffffff !important;
     text-decoration: none !important;
 }
 
@@ -141,7 +141,7 @@ html, :host {
 
 /* Body样式 */
 body {
-    cursor: url(https://image.idealclover.cn/projects/Homepage/icons/cursor.ico), auto;
+    cursor: url(https://image.matong.cn/projects/Homepage/icons/cursor.ico), auto;
     font-family: 'Noto Sans SC', MaokenZhuyuanTi, sans-serif;
     overflow-x: hidden;
     margin: 0;
@@ -472,42 +472,31 @@ body {
 
 /* 二次元视频播放器样式 */
 .anime-video-section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    margin-bottom: 30px;
 }
 
 .video-player-container {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 20px;
+    background: #272727; /* 与关注马桶父级框颜色相同 */
+    border: 1px solid #333;
+    border-radius: 12px; /* 与关注卡片相同的圆角 */
     padding: 20px;
-    box-shadow: 
-        0 20px 40px rgba(102, 126, 234, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    box-shadow: 4px 8px 12px rgba(26, 26, 26, 0.8); /* 与关注卡片相同的阴影 */
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    width: 100%; /* 适应父级容器宽度 */
+    max-width: 100%; /* 响应式 */
 }
 
 .video-player-container:hover {
+    background: #303030; /* 与关注卡片hover效果相同 */
+    border-color: #555;
     transform: translateY(-2px);
-    box-shadow: 
-        0 30px 60px rgba(102, 126, 234, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    box-shadow: 0 10px 35px rgba(255, 255, 255, 0.3), 
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
-.video-player-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(173, 216, 230, 0.15) 0%, transparent 50%);
-    pointer-events: none;
-}
+/* 移除装饰性渐变背景，保持简洁的灰色背景 */
 
 .video-header {
     display: flex;
@@ -580,11 +569,13 @@ body {
 
 .anime-video {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: 260px; /* 增加电脑端高度，减少裁剪 */
+    object-fit: cover; /* 使用cover避免黑框 */
+    object-position: top center; /* 从上往下裁剪，优先保存上半部分（人物头部） */
     border-radius: 16px;
     transition: all 0.3s ease;
     display: block;
+    cursor: pointer; /* 添加点击提示 */
 }
 
 .anime-video:hover {
@@ -800,9 +791,10 @@ body {
 .video-footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     z-index: 2;
+    gap: 20px;
 }
 
 .video-info {
@@ -827,49 +819,17 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.social-links {
-    display: flex;
-    gap: 10px;
+.video-description {
+    flex: 1;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: right;
+    font-style: italic;
 }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.social-link:hover {
-    transform: translateY(-2px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.social-link.zhihu:hover {
-    background: #0066ff;
-    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
-}
-
-.social-link.bilibili:hover {
-    background: #ff6b9d;
-    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
-}
-
-.social-link.github:hover {
-    background: #333;
-    box-shadow: 0 5px 15px rgba(51, 51, 51, 0.3);
-}
-
-.social-link.douyin:hover {
-    background: #000;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+.video-description p {
+    margin: 0;
 }
 
 /* 响应式适配 */
@@ -880,7 +840,9 @@ body {
     }
     
     .anime-video {
-        height: 200px;
+        height: 200px; /* 平板端保持较好比例 */
+        object-fit: cover; /* 平板端使用cover避免黑框 */
+        object-position: top center; /* 平板端也优先保存上半部分 */
     }
     
     .video-header {
@@ -895,6 +857,10 @@ body {
         align-items: flex-start;
     }
     
+    .video-description {
+        text-align: left;
+    }
+    
     .custom-controls {
         padding: 10px 15px;
         gap: 10px;
@@ -903,29 +869,25 @@ body {
     .progress-container {
         margin: 0 8px;
     }
-    
-    .social-links {
-        align-self: flex-end;
-    }
 }
 
 @media (max-width: 480px) {
     .anime-video {
-        height: 180px;
+        height: 180px; /* 手机端保持用户满意的比例 */
+        object-fit: cover; /* 手机端使用cover避免黑框 */
+        object-position: top center; /* 手机端也优先保存上半部分（人物头部） */
     }
     
     .video-title {
         font-size: 1rem;
     }
     
-    .social-link {
-        width: 32px;
-        height: 32px;
-        font-size: 0.85rem;
-    }
-    
     .tag {
         font-size: 0.7rem;
         padding: 2px 8px;
+    }
+    
+    .video-description {
+        font-size: 0.8rem;
     }
 }

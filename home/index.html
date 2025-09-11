@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>idealclover - 个人主页</title>
+    <title>matong - 个人主页</title>
     <link rel="stylesheet" href="/home/styles.css?v=1.1">
     <link rel="stylesheet" href="/profile/profile-styles.css?v=1.1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="blog-content">
                         <p class="blog-description">记录技术/学术/随想/</p>
-                        <a href="https://idealclover.top" class="blog-url">https://idealclover.top</a>
+                        <a href="https://matong.top" class="blog-url">https://matong.top</a>
                     </div>
                     <div class="blog-footer">
                         <a href="#" class="blog-link">去逛逛・历史文章</a>
@@ -51,87 +51,31 @@
                 </div>
             </div>
 
-            <!-- 二次元视频播放器 -->
-            <div class="anime-video-section">
-                <div class="video-player-container">
-                    <div class="video-header">
-                        <div class="video-title">
-                            <i class="fas fa-play-circle"></i>
-                            <span>二次元精选</span>
-                        </div>
-                        <div class="video-status">
-                            <span class="status-dot"></span>
-                            <span>在线播放</span>
-                        </div>
+            <!-- 社交平台卡片 -->
+            <div class="social-section">
+                <a href="https://www.zhihu.com/people/matong-65" target="_blank" class="social-card zhihu">
+                    <div class="social-content">
+                        <span class="platform-name">知乎</span>
                     </div>
-                    
-                    <div class="video-wrapper">
-                        <video id="animeVideo" class="anime-video" controls preload="metadata" poster="../assets/images/video-poster.jpg">
-                            <source src="../assets/video/130_1757550418 (online-video-cutter.com).mp4" type="video/mp4">
-                            您的浏览器不支持 video 标签。
-                        </video>
-                        
-                        <!-- 自定义控制条 -->
-                        <div class="custom-controls">
-                            <button class="play-pause-btn" id="playPauseBtn">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" id="progressFill"></div>
-                                    <div class="progress-handle" id="progressHandle"></div>
-                                </div>
-                                <div class="time-display">
-                                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                                </div>
-                            </div>
-                            <div class="volume-container">
-                                <button class="volume-btn" id="volumeBtn">
-                                    <i class="fas fa-volume-up"></i>
-                                </button>
-                                <div class="volume-slider">
-                                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-input">
-                                </div>
-                            </div>
-                            <button class="fullscreen-btn" id="fullscreenBtn">
-                                <i class="fas fa-expand"></i>
-                            </button>
-                        </div>
-                        
-                        <!-- 装饰性元素 -->
-                        <div class="anime-decorations">
-                            <div class="floating-star star-1">✨</div>
-                            <div class="floating-star star-2">⭐</div>
-                            <div class="floating-star star-3">💫</div>
-                            <div class="sakura-petal petal-1">🌸</div>
-                            <div class="sakura-petal petal-2">🌸</div>
-                        </div>
+                </a>
+
+                <a href="https://space.bilibili.com/479915630?spm_id_from=333.1007.0.0" target="_blank" class="social-card bilibili">
+                    <div class="social-content">
+                        <span class="platform-name">Bilibili</span>
                     </div>
-                    
-                    <div class="video-footer">
-                        <div class="video-info">
-                            <span class="video-tags">
-                                <span class="tag">二次元</span>
-                                <span class="tag">精选</span>
-                                <span class="tag">高清</span>
-                            </span>
-                        </div>
-                        <div class="social-links">
-                            <a href="https://www.zhihu.com/people/matong-65" target="_blank" class="social-link zhihu" title="知乎">
-                                <i class="fab fa-zhihu"></i>
-                            </a>
-                            <a href="https://space.bilibili.com/479915630" target="_blank" class="social-link bilibili" title="Bilibili">
-                                <i class="fab fa-bilibili"></i>
-                            </a>
-                            <a href="https://github.com/Serendipity-matong" target="_blank" class="social-link github" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.douyin.com/user/MS4wLjABAAAA8wFPl4Q5vw6WSBvaeZ-9cuvKgvBmhVGMTH8b88qLLrU" target="_blank" class="social-link douyin" title="抖音">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                        </div>
+                </a>
+
+                <a href="https://github.com/Serendipity-matong" target="_blank" class="social-card github">
+                    <div class="social-content">
+                        <span class="platform-name">GitHub</span>
                     </div>
-                </div>
+                </a>
+
+                <a href="https://www.douyin.com/user/MS4wLjABAAAA8wFPl4Q5vw6WSBvaeZ-9cuvKgvBmhVGMTH8b88qLLrU?from_tab_name=main" target="_blank" class="social-card jike">
+                    <div class="social-content">
+                        <span class="platform-name">抖音</span>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -155,60 +99,30 @@
 
             <!-- 文章列表 -->
             <div class="articles-list">
-                <!-- 最新文章 -->
-                <a href="../blog/blog-tech-life-balance.html" class="article-item clickable">
-                    <h3 class="article-title">技术与生活的平衡艺术</h3>
-                    <time class="article-date">2024.12.01</time>
-                </a>
-                
-                <!-- 技术文章 -->
+                <!-- 最新5篇文章 -->
                 <a href="../blog/blog-react.html" class="article-item clickable">
                     <h3 class="article-title">React 18新特性深度解析：并发特性与性能优化</h3>
-                    <time class="article-date">2024.12.15</time>
+                    <time class="article-date">2025.09.12</time>
                 </a>
                 
-                <a href="../blog/blog-sparsification.html" class="article-item clickable">
-                    <h3 class="article-title">梯度稀疏化方法：Top-k与Rand-k算法的理论与实践</h3>
-                    <time class="article-date">2024.07.25</time>
+                <a href="../blog/blog-tech-life-balance.html" class="article-item clickable">
+                    <h3 class="article-title">技术与生活的平衡艺术</h3>
+                    <time class="article-date">2025.09.10</time>
+                </a>
+
+                <a href="../blog/blog-astro.html" class="article-item clickable">
+                    <h3 class="article-title">Astro：下一代静态站点生成器的革命性创新</h3>
+                    <time class="article-date">2025.09.08</time>
+                </a>
+
+                <a href="../blog/blog-learning-journey.html" class="article-item clickable">
+                    <h3 class="article-title">学习之路：从迷茫到清晰的成长轨迹</h3>
+                    <time class="article-date">2025.09.06</time>
                 </a>
 
                 <a href="../blog/blog-microservices.html" class="article-item clickable">
                     <h3 class="article-title">微服务架构设计与实践：从单体到分布式的演进之路</h3>
-                    <time class="article-date">2024.09.18</time>
-                </a>
-
-                <!-- 随想文章 -->
-                <a href="../blog/blog-learning-journey.html" class="article-item clickable">
-                    <h3 class="article-title">学习之路：从迷茫到清晰的成长轨迹</h3>
-                    <time class="article-date">2024.11.15</time>
-                </a>
-
-                <!-- 旅游文章 -->
-                <a href="../blog/blog-yunnan-travel.html" class="article-item clickable">
-                    <h3 class="article-title">云南：多彩秘境的寻梦之旅</h3>
-                    <time class="article-date">2024.06.15</time>
-                </a>
-
-                <!-- 学术文章 -->
-                <a href="../blog/blog-distributed-sgd.html" class="article-item clickable">
-                    <h3 class="article-title">分布式梯度下降算法：从同步到异步的优化策略</h3>
-                    <time class="article-date">2024.06.12</time>
-                </a>
-
-                <a href="../blog/blog-ddos.html" class="article-item clickable">
-                    <h3 class="article-title">DDOS攻击防护策略：构建弹性网络安全防线</h3>
-                    <time class="article-date">2024.08.14</time>
-                </a>
-
-                <!-- 更多文章 -->
-                <a href="../blog/blog-astro.html" class="article-item clickable">
-                    <h3 class="article-title">Astro：下一代静态站点生成器的革命性创新</h3>
-                    <time class="article-date">2024.11.28</time>
-                </a>
-
-                <a href="../blog/blog-fastest-k.html" class="article-item clickable">
-                    <h3 class="article-title">Fastest-k SGD：基于动态选择的高效分布式优化算法</h3>
-                    <time class="article-date">2024.04.15</time>
+                    <time class="article-date">2025.09.04</time>
                 </a>
             </div>
             
@@ -284,7 +198,6 @@
                 <a href="https://github.com/Serendipity-matong" target="_blank" class="github-btn">
                     <i class="fab fa-github"></i>
                     在 GitHub 查看更多开源创作 @马桶蹲累了🚽
-                    <span class="total-stars">3K+ Stars ✨</span>
                 </a>
             </div>
         </div>
@@ -338,39 +251,79 @@
                 </div>
             </div>
             
-            <div class="follow-platforms">
-                <a href="https://www.zhihu.com/people/matong-65" target="_blank" class="follow-platform zhihu">
-                    <i class="fab fa-zhihu"></i>
-                    <div class="platform-info">
-                        <span class="platform-name">知乎</span>
-                        <span class="platform-followers">2916 Followers</span>
+            <!-- 二次元视频播放器 -->
+            <div class="anime-video-section">
+                <div class="video-player-container">
+                    <div class="video-header">
+                        <div class="video-title">
+                            <i class="fas fa-play-circle"></i>
+                            <span>二次元精选</span>
+                        </div>
+                        <div class="video-status">
+                            <span class="status-dot"></span>
+                            <span>在线播放</span>
+                        </div>
                     </div>
-                </a>
-                
-                <a href="https://space.bilibili.com/479915630?spm_id_from=333.1007.0.0" target="_blank" class="follow-platform bilibili">
-                    <i class="fab fa-bilibili"></i>
-                    <div class="platform-info">
-                        <span class="platform-name">Bilibili</span>
-                        <span class="platform-followers">1686 Followers</span>
+                    
+                    <div class="video-wrapper">
+                        <video id="animeVideo" class="anime-video" autoplay loop muted preload="metadata" poster="../assets/images/video-poster.jpg">
+                            <source src="../assets/video/130_1757550418 (online-video-cutter.com).mp4" type="video/mp4">
+                            您的浏览器不支持 video 标签。
+                        </video>
+                        
+                        <!-- 自定义控制条 -->
+                        <div class="custom-controls">
+                            <button class="play-pause-btn" id="playPauseBtn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                    <div class="progress-handle" id="progressHandle"></div>
+                                </div>
+                                <div class="time-display">
+                                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                </div>
+                            </div>
+                            <div class="volume-container">
+                                <button class="volume-btn" id="volumeBtn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-input">
+                                </div>
+                            </div>
+                            <button class="fullscreen-btn" id="fullscreenBtn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- 装饰性元素 -->
+                        <div class="anime-decorations">
+                            <div class="floating-star star-1">✨</div>
+                            <div class="floating-star star-2">⭐</div>
+                            <div class="floating-star star-3">💫</div>
+                            <div class="sakura-petal petal-1">🌸</div>
+                            <div class="sakura-petal petal-2">🌸</div>
+                        </div>
                     </div>
-                </a>
-                
-                <a href="https://github.com/Serendipity-matong" target="_blank" class="follow-platform github">
-                    <i class="fab fa-github"></i>
-                    <div class="platform-info">
-                        <span class="platform-name">GitHub</span>
-                        <span class="platform-followers">808 Followers</span>
+                    
+                    <div class="video-footer">
+                        <div class="video-info">
+                            <span class="video-tags">
+                                <span class="tag">二次元</span>
+                                <span class="tag">精选</span>
+                                <span class="tag">高清</span>
+                            </span>
+                        </div>
+                        <div class="video-description">
+                            <p>分享我的二次元世界，一起探索动漫的无限魅力～</p>
+                        </div>
                     </div>
-                </a>
-                
-                <a href="https://www.douyin.com/user/MS4wLjABAAAA8wFPl4Q5vw6WSBvaeZ-9cuvKgvBmhVGMTH8b88qLLrU?from_tab_name=main" target="_blank" class="follow-platform jike">
-                    <i class="fas fa-coffee"></i>
-                    <div class="platform-info">
-                        <span class="platform-name">即刻</span>
-                        <span class="platform-followers">537 Followers</span>
-                    </div>
-                </a>
+                </div>
             </div>
+            
+            <!-- 关注平台框已移除 -->
         </div>
 
         <!-- 联系方式区域 -->
@@ -383,7 +336,7 @@
             </div>
             
             <div class="contact-methods">
-                <a href="mailto:idealclover@163.com" class="contact-item email">
+                <a href="mailto:matong@163.com" class="contact-item email">
                     <i class="fas fa-envelope"></i>
                     <span>Email: Mt98713194@icloud.com</span>
                 </a>
@@ -393,12 +346,12 @@
                     <span>QQ: 114138254</span>
                 </a>
                 
-                <a href="https://t.me/idealclover" class="contact-item telegram">
+                <a href="https://t.me/matong" class="contact-item telegram">
                     <i class="fab fa-telegram"></i>
                     <span>Telegram: @matong</span>
                 </a>
 
-                <a href="https://twitter.com/idealclover" class="contact-item twitter">
+                <a href="https://twitter.com/matong" class="contact-item twitter">
                     <i class="fab fa-twitter"></i>
                     <span>Twitter: @Matong123</span>
                 </a>
@@ -408,12 +361,7 @@
         <!-- 页脚信息 -->
         <div class="footer-section">
             <div class="footer-content">
-                <p class="footer-text">made with ❤️ by idealclover</p>
-                <div class="footer-tech">
-                    <span>🚀 powered by</span>
-                    <a href="#">tailwindcss</a>
-                    <a href="#">astro</a>
-                </div>
+                <p class="footer-text">made with ❤️ by matong</p>
                 <div class="footer-inspiration">
                     <span>💡 inspired by</span>
                     <a href="https://bento.me">bento.me</a>
@@ -429,8 +377,8 @@
 
     <script src="/home/script.js?v=1.1"></script>
     
-    <!-- idealclover Homepage 风格特效 -->
-    <script src="/assets/idealclover-effects.js"></script>
+    <!-- matong Homepage 风格特效 -->
+    <script src="/assets/matong-effects.js"></script>
     
 </body>
 </html>
