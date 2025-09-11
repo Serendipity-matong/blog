@@ -51,31 +51,87 @@
                 </div>
             </div>
 
-            <!-- 社交平台卡片 -->
-            <div class="social-section">
-                <a href="https://www.zhihu.com/people/matong-65" target="_blank" class="social-card zhihu">
-                    <div class="social-content">
-                        <span class="platform-name">知乎</span>
+            <!-- 二次元视频播放器 -->
+            <div class="anime-video-section">
+                <div class="video-player-container">
+                    <div class="video-header">
+                        <div class="video-title">
+                            <i class="fas fa-play-circle"></i>
+                            <span>二次元精选</span>
+                        </div>
+                        <div class="video-status">
+                            <span class="status-dot"></span>
+                            <span>在线播放</span>
+                        </div>
                     </div>
-                </a>
-
-                <a href="https://space.bilibili.com/479915630?spm_id_from=333.1007.0.0" target="_blank" class="social-card bilibili">
-                    <div class="social-content">
-                        <span class="platform-name">Bilibili</span>
+                    
+                    <div class="video-wrapper">
+                        <video id="animeVideo" class="anime-video" controls preload="metadata" poster="../assets/images/video-poster.jpg">
+                            <source src="../assets/video/130_1757550418 (online-video-cutter.com).mp4" type="video/mp4">
+                            您的浏览器不支持 video 标签。
+                        </video>
+                        
+                        <!-- 自定义控制条 -->
+                        <div class="custom-controls">
+                            <button class="play-pause-btn" id="playPauseBtn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                    <div class="progress-handle" id="progressHandle"></div>
+                                </div>
+                                <div class="time-display">
+                                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                </div>
+                            </div>
+                            <div class="volume-container">
+                                <button class="volume-btn" id="volumeBtn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-input">
+                                </div>
+                            </div>
+                            <button class="fullscreen-btn" id="fullscreenBtn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- 装饰性元素 -->
+                        <div class="anime-decorations">
+                            <div class="floating-star star-1">✨</div>
+                            <div class="floating-star star-2">⭐</div>
+                            <div class="floating-star star-3">💫</div>
+                            <div class="sakura-petal petal-1">🌸</div>
+                            <div class="sakura-petal petal-2">🌸</div>
+                        </div>
                     </div>
-                </a>
-
-                <a href="https://github.com/Serendipity-matong" target="_blank" class="social-card github">
-                    <div class="social-content">
-                        <span class="platform-name">GitHub</span>
+                    
+                    <div class="video-footer">
+                        <div class="video-info">
+                            <span class="video-tags">
+                                <span class="tag">二次元</span>
+                                <span class="tag">精选</span>
+                                <span class="tag">高清</span>
+                            </span>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.zhihu.com/people/matong-65" target="_blank" class="social-link zhihu" title="知乎">
+                                <i class="fab fa-zhihu"></i>
+                            </a>
+                            <a href="https://space.bilibili.com/479915630" target="_blank" class="social-link bilibili" title="Bilibili">
+                                <i class="fab fa-bilibili"></i>
+                            </a>
+                            <a href="https://github.com/Serendipity-matong" target="_blank" class="social-link github" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.douyin.com/user/MS4wLjABAAAA8wFPl4Q5vw6WSBvaeZ-9cuvKgvBmhVGMTH8b88qLLrU" target="_blank" class="social-link douyin" title="抖音">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
                     </div>
-                </a>
-
-                <a href="https://www.douyin.com/user/MS4wLjABAAAA8wFPl4Q5vw6WSBvaeZ-9cuvKgvBmhVGMTH8b88qLLrU?from_tab_name=main" target="_blank" class="social-card jike">
-                    <div class="social-content">
-                        <span class="platform-name">抖音</span>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
 
